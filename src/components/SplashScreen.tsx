@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 export default function SplashScreen() {
+  const { t } = useTranslation();
   return (
     <motion.div
       initial={{ opacity: 1 }}
@@ -16,7 +18,7 @@ export default function SplashScreen() {
       >
         <img
           src="/images/logo.webp"
-          alt="Fajka Bar Logo"
+          alt={`${t('common.brand')} Logo`}
           className="w-full h-full object-contain"
         />
         <motion.div

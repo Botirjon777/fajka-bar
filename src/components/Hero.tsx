@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function Hero() {
+  const { t } = useTranslation();
+
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
@@ -26,7 +29,7 @@ export default function Hero() {
             <div className="h-px w-8 bg-primary/40" />
             <Sparkles size={16} className="text-primary animate-pulse" />
             <span className="text-primary uppercase tracking-[0.8em] text-[10px] font-black">
-              WARSZAWA · ŻURAWIA 22
+              {t('common.address')}
             </span>
             <div className="h-px w-8 bg-primary/40" />
           </div>
@@ -38,7 +41,7 @@ export default function Hero() {
           </h1>
 
           <p className="text-lg md:text-2xl text-white/40 mb-14 max-w-xl mx-auto font-light leading-relaxed uppercase tracking-widest px-4">
-            Prestiż, klimat i najlepsza szisza w sercu stolicy.
+            {t('hero.subtitle')}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
@@ -46,13 +49,13 @@ export default function Hero() {
               href="#menu"
               className="w-full sm:w-auto bg-primary text-black px-12 py-6 rounded-2xl font-black uppercase text-xs tracking-widest transition-all hover:scale-105 active:scale-95 shadow-[0_20px_50px_rgba(212,175,55,0.3)]"
             >
-              SPRAWDŹ MENU
+              {t('common.exploreMenu')}
             </a>
             <a
               href="#location"
               className="text-white/40 hover:text-primary transition-colors font-black uppercase text-xs tracking-[0.3em] py-2 border-b-2 border-transparent hover:border-primary/30"
             >
-              LOCALIZACJA
+              {t('common.location')}
             </a>
           </div>
         </motion.div>

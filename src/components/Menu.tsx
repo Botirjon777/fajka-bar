@@ -11,6 +11,7 @@ import {
   ArrowUp,
 } from "lucide-react";
 import { cn } from "../lib/utils";
+import { useTranslation } from "react-i18next";
 
 interface PriceOption {
   label: string;
@@ -120,17 +121,20 @@ const SubCategoryTitle = ({
   </div>
 );
 
-const BackToMenu = () => (
-  <div className="flex justify-center mt-12 mb-24">
-    <a
-      href="#category-selection"
-      className="flex items-center gap-2 text-white/40 hover:text-primary transition-colors uppercase tracking-[0.3em] text-[10px] font-black border border-white/10 px-6 py-3 rounded-full hover:border-primary/50"
-    >
-      <ArrowUp size={12} />
-      Back to Main Menu
-    </a>
-  </div>
-);
+const BackToMenu = () => {
+  const { t } = useTranslation();
+  return (
+    <div className="flex justify-center mt-12 mb-24">
+      <a
+        href="#category-selection"
+        className="flex items-center gap-2 text-white/40 hover:text-primary transition-colors uppercase tracking-[0.3em] text-[10px] font-black border border-white/10 px-6 py-3 rounded-full hover:border-primary/50"
+      >
+        <ArrowUp size={12} />
+        {t("common.backToMenu")}
+      </a>
+    </div>
+  );
+};
 
 const CategoryCard = ({
   title,
@@ -145,14 +149,14 @@ const CategoryCard = ({
     href={`#${id}`}
     whileHover={{ y: -5, scale: 1.02 }}
     whileTap={{ scale: 0.98 }}
-    className="relative aspect-4/3 rounded-3xl overflow-hidden border border-white/10 group"
+    className="relative aspect-[2.4/1] rounded-3xl overflow-hidden border border-white/10 group"
   >
     <img
       src={image}
       alt={title}
       className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-80 transition-opacity duration-500"
     />
-    <div className="absolute inset-0 bg-linear-to-t from-black via-black/20 to-transparent" />
+    <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent" />
     <div className="absolute bottom-6 left-6 right-6">
       <div className="flex items-center justify-between">
         <h4 className="text-xl md:text-2xl font-serif font-black text-white italic tracking-tighter uppercase">
@@ -168,6 +172,8 @@ const CategoryCard = ({
 );
 
 export default function Menu() {
+  const { t } = useTranslation();
+
   const shishaBrands = [
     {
       title: "ADALYA",
@@ -219,13 +225,13 @@ export default function Menu() {
       ],
     },
     {
-      title: "SHISHA WITH ALCOHOL",
+      title: t("menu.shisha.withAlcohol"),
       price: "+15-25zł",
       items: [
-        { name: "Shisha with milk", price: "+15zł" },
-        { name: "Shisha with wine", price: "+20zł" },
-        { name: "Shisha with Vodka", price: "+15zł" },
-        { name: "Shisha with Whisky", price: "+25zł" },
+        { name: t("menu.shisha.withMilk"), price: "+15zł" },
+        { name: t("menu.shisha.withWine"), price: "+20zł" },
+        { name: t("menu.shisha.withVodka"), price: "+15zł" },
+        { name: t("menu.shisha.withWhisky"), price: "+25zł" },
       ],
     },
   ];
@@ -403,14 +409,46 @@ export default function Menu() {
   ];
 
   const categories = [
-    { title: "Shisha", id: "section-shisha", image: "/images/hookah.webp" },
-    { title: "Shots", id: "section-shots", image: "/images/drinks.webp" },
-    { title: "Drinki", id: "section-cocktails", image: "/images/hero.webp" },
-    { title: "Whiskey", id: "section-whiskey", image: "/images/drinks.webp" },
-    { title: "Piwo", id: "section-beer", image: "/images/drinks.webp" },
-    { title: "Butelki", id: "section-bottles", image: "/images/drinks.webp" },
-    { title: "Napoje", id: "section-beverages", image: "/images/drinks.webp" },
-    { title: "Snacks", id: "section-snacks", image: "/images/snacks.webp" },
+    {
+      title: t("menu.categories.shisha"),
+      id: "section-shisha",
+      image: "/images/hookah.webp",
+    },
+    {
+      title: t("menu.categories.shots"),
+      id: "section-shots",
+      image: "/images/drinks.webp",
+    },
+    {
+      title: t("menu.categories.cocktails"),
+      id: "section-cocktails",
+      image: "/images/hero.webp",
+    },
+    {
+      title: t("menu.categories.whiskey"),
+      id: "section-whiskey",
+      image: "/images/drinks.webp",
+    },
+    {
+      title: t("menu.categories.beer"),
+      id: "section-beer",
+      image: "/images/drinks.webp",
+    },
+    {
+      title: t("menu.categories.bottles"),
+      id: "section-bottles",
+      image: "/images/drinks.webp",
+    },
+    {
+      title: t("menu.categories.beverages"),
+      id: "section-beverages",
+      image: "/images/drinks.webp",
+    },
+    {
+      title: t("menu.categories.snacks"),
+      id: "section-snacks",
+      image: "/images/snacks.webp",
+    },
   ];
 
   return (
@@ -421,7 +459,7 @@ export default function Menu() {
           whileInView={{ opacity: 1 }}
           className="text-primary uppercase tracking-[0.6em] text-[10px] font-black mb-4 block"
         >
-          Signature Experience
+          {t("menu.signature")}
         </motion.span>
         <motion.h2
           initial={{ opacity: 0, scale: 0.9 }}
@@ -429,7 +467,8 @@ export default function Menu() {
           viewport={{ once: true }}
           className="text-6xl md:text-8xl font-serif font-black text-white italic tracking-tighter"
         >
-          Menu<span className="text-primary">.</span>
+          {t("common.menu")}
+          <span className="text-primary">.</span>
         </motion.h2>
       </div>
 
@@ -438,7 +477,7 @@ export default function Menu() {
         <div className="flex items-center gap-4 mb-12">
           <div className="h-px flex-1 bg-white/5" />
           <span className="text-[10px] uppercase font-black tracking-[0.4em] text-white/20 whitespace-nowrap">
-            Choose your poison
+            {t("menu.choosePoison")}
           </span>
           <div className="h-px flex-1 bg-white/5" />
         </div>
@@ -453,7 +492,7 @@ export default function Menu() {
         {/* SHISHA SECTION */}
         <div id="section-shisha">
           <SectionTitle
-            title="SHISHA"
+            title={t("menu.categories.shisha")}
             icon={<Flame size={20} />}
             id="section-shisha"
           />
@@ -493,7 +532,7 @@ export default function Menu() {
         {/* SHOTS SECTION */}
         <div id="section-shots">
           <SectionTitle
-            title="SHOTS"
+            title={t("menu.categories.shots")}
             icon={<Zap size={20} />}
             id="section-shots"
           />
@@ -508,7 +547,7 @@ export default function Menu() {
               />
             ))}
           </div>
-          <SubCategoryTitle title="FIRE SHOTS" />
+          <SubCategoryTitle title={t("menu.categories.fireShots")} />
           <div className="space-y-2">
             {fireShots.map((item) => (
               <MenuItem
@@ -526,7 +565,7 @@ export default function Menu() {
         {/* COCKTAILS SECTION */}
         <div id="section-cocktails">
           <SectionTitle
-            title="KLASYCZNE DRINKI"
+            title={t("menu.categories.cocktails")}
             icon={<Martini size={20} />}
             id="section-cocktails"
           />
@@ -547,7 +586,7 @@ export default function Menu() {
         {/* WHISKEY SECTION */}
         <div id="section-whiskey">
           <SectionTitle
-            title="WHISKEY"
+            title={t("menu.categories.whiskey")}
             icon={<GlassWater size={20} />}
             id="section-whiskey"
           />
@@ -567,7 +606,7 @@ export default function Menu() {
         {/* BEER SECTION */}
         <div id="section-beer">
           <SectionTitle
-            title="PIWO"
+            title={t("menu.categories.beer")}
             icon={<Beer size={20} />}
             id="section-beer"
           />
@@ -588,7 +627,7 @@ export default function Menu() {
         {/* BOTTLES SECTION */}
         <div id="section-bottles">
           <SectionTitle
-            title="BUTELKI"
+            title={t("menu.categories.bottles")}
             icon={<Wine size={20} />}
             id="section-bottles"
           />
@@ -609,7 +648,7 @@ export default function Menu() {
         {/* BEVERAGES SECTION */}
         <div id="section-beverages">
           <SectionTitle
-            title="NAPOJE ZIMNE"
+            title={t("menu.categories.beverages")}
             icon={<Droplets size={20} />}
             id="section-beverages"
           />

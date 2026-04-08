@@ -1,24 +1,27 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Phone, Globe } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const navLinks = [
-  { name: "Shisha", href: "#shisha" },
-  { name: "Shots", href: "#shots" },
-  { name: "Fire Shots", href: "#fire-shots" },
-  { name: "Cocktails", href: "#cocktails" },
-  { name: "Whiskey", href: "#whiskey" },
-  { name: "Beer", href: "#beer" },
-  { name: "Bottles", href: "#bottles" },
-  { name: "Beverages", href: "#beverages" },
-  { name: "Location", href: "#location" },
-];
-
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
+  const { t } = useTranslation();
+
+  const navLinks = [
+    { name: t("menu.categories.shisha"), href: "#section-shisha" },
+    { name: t("menu.categories.shots"), href: "#section-shots" },
+    { name: t("menu.categories.fireShots"), href: "#section-fire-shots" },
+    { name: t("menu.categories.cocktails"), href: "#section-cocktails" },
+    { name: t("menu.categories.whiskey"), href: "#section-whiskey" },
+    { name: t("menu.categories.beer"), href: "#section-beer" },
+    { name: t("menu.categories.bottles"), href: "#section-bottles" },
+    { name: t("menu.categories.beverages"), href: "#section-beverages" },
+    { name: t("common.location"), href: "#location" },
+  ];
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -29,7 +32,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100]"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-100"
           />
 
           {/* Sidebar */}
@@ -38,10 +41,12 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed top-0 right-0 h-full w-[280px] sm:w-[350px] glass z-[101] shadow-2xl p-8 flex flex-col"
+            className="fixed top-0 right-0 h-full w-[280px] sm:w-[350px] glass z-101 shadow-2xl p-8 flex flex-col"
           >
             <div className="flex justify-between items-center mb-12 shrink-0">
-              <span className="text-xl font-serif font-bold gold-gradient italic">FAJKABAR.</span>
+              <span className="text-xl font-serif font-bold gold-gradient italic">
+                {t("common.brand")}.
+              </span>
               <button
                 onClick={onClose}
                 className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-white/10 transition-colors"
@@ -67,14 +72,16 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             <div className="pt-8 border-t border-white/10 space-y-6 shrink-0 mt-8">
               <div className="flex items-center gap-3 text-white/60">
                 <Globe size={18} className="text-primary" />
-                <span className="text-xs tracking-widest uppercase font-black">ŻURAWIA 22, WARSZAWA</span>
+                <span className="text-xs tracking-widest uppercase font-black">
+                  {t("common.address")}
+                </span>
               </div>
               <a
-                href="tel:+123456789"
+                href={`tel:${t("common.phone")}`}
                 className="flex items-center justify-center gap-2 w-full bg-primary text-black py-4 rounded-xl font-black uppercase text-[10px] tracking-widest transition-all hover:scale-[1.02] shadow-xl shadow-primary/20"
               >
                 <Phone size={14} />
-                BOOK A TABLE
+                {t("common.bookTable")}
               </a>
             </div>
           </motion.div>

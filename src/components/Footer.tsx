@@ -1,10 +1,13 @@
 import { Globe, MapPin, Phone, Share2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
+  const { t } = useTranslation();
+
   const hours = [
-    { day: "Mon - Thu", time: "17:00 - 03:00" },
-    { day: "Fri - Sat", time: "17:00 - 05:00" },
-    { day: "Sun", time: "17:00 - 03:00" },
+    { day: t('footer.monThu'), time: "17:00 - 03:00" },
+    { day: t('footer.friSat'), time: "17:00 - 05:00" },
+    { day: t('footer.sun'), time: "17:00 - 03:00" },
   ];
 
   return (
@@ -16,11 +19,10 @@ export default function Footer() {
         {/* Brand & Social */}
         <div className="lg:col-span-4">
           <h3 className="text-4xl md:text-5xl font-serif font-black gold-gradient italic mb-6">
-            FAJKA BAR.
+            {t('common.brand')}.
           </h3>
           <p className="text-white/40 text-lg font-light leading-relaxed mb-10">
-            A sanctuary for shisha enthusiasts in the heart of Warsaw. Elegance
-            in every breath, excellence in every service.
+            {t('footer.brandDesc')}
           </p>
           <div className="flex gap-4">
             <a
@@ -44,7 +46,7 @@ export default function Footer() {
         <div className="flex flex-col gap-8">
           <div className="capitalize">
             <h4 className="text-primary font-black mb-8 uppercase tracking-[0.3em] text-[10px]">
-              Location Info
+              {t('footer.locationInfo')}
             </h4>
             <ul className="space-y-8">
               <li className="flex items-start gap-4 text-white/60 group cursor-pointer hover:text-white transition-colors">
@@ -53,20 +55,20 @@ export default function Footer() {
                   Żurawia 22, <br />
                   00-515 Warszawa <br />
                   <span className="text-[10px] text-primary/40 uppercase tracking-widest font-black mt-2 inline-block italic">
-                    WARSAW CITY CENTER
+                    {t('footer.warsawCenter')}
                   </span>
                 </div>
               </li>
               <li className="flex items-center gap-4 text-white/60 group hover:text-white transition-colors">
                 <Phone size={24} className="text-primary shrink-0" />
-                <span className="text-xl font-serif">+48 123 456 789</span>
+                <span className="text-xl font-serif">{t('common.phone')}</span>
               </li>
             </ul>
           </div>
 
           <div className="pt-4">
             <h4 className="text-primary font-black mb-6 uppercase tracking-[0.3em] text-[10px]">
-              Opening Hours
+              {t('footer.openingHours')}
             </h4>
             <div className="space-y-4">
               {hours.map((h) => (
@@ -102,10 +104,10 @@ export default function Footer() {
                 <MapPin size={32} />
               </div>
               <h4 className="text-2xl font-serif text-white mb-2 italic">
-                Open in Google Maps
+                {t('footer.openInMaps')}
               </h4>
               <p className="text-white/40 text-[10px] uppercase tracking-[0.4em] font-black">
-                GET DIRECTIONS
+                {t('footer.getDirections')}
               </p>
             </div>
 
@@ -117,9 +119,9 @@ export default function Footer() {
       </div>
 
       <div className="max-w-7xl mx-auto pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] uppercase tracking-[0.4em] text-white/20">
-        <span>© {new Date().getFullYear()} FAJKA BAR WARSAW</span>
+        <span>© {new Date().getFullYear()} {t('common.brand')} {t('common.city')}</span>
         <span className="font-serif italic text-primary/40 underline decoration-primary/20 underline-offset-4">
-          ŻURAWIA 22, 00-515 WARSZAWA
+          {t('common.address')}
         </span>
       </div>
     </footer>

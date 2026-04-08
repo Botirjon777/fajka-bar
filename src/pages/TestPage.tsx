@@ -1,4 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Globe } from "lucide-react";
 
 interface MenuItem {
   name: string;
@@ -357,6 +359,7 @@ function isValidMenuData(data: unknown): data is MenuData {
 }
 
 export default function TestPage() {
+  const { t, i18n } = useTranslation();
   const [menuData, setMenuData] = useState<MenuData>(createInitialData);
   const [editMode, setEditMode] = useState(true);
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
@@ -676,21 +679,45 @@ export default function TestPage() {
       <div
         className={`mx-auto grid max-w-7xl gap-6 p-4 lg:justify-center lg:p-6 ${editMode ? "lg:grid-cols-[340px_minmax(0,430px)]" : "lg:grid-cols-[430px]"}`}
       >
+        <div className="fixed right-5 top-5 z-60 flex items-center gap-3">
+          <button
+            onClick={() => {
+              const nextLang = i18n.language === "pl" ? "en" : "pl";
+              i18n.changeLanguage(nextLang);
+            }}
+            className="flex items-center gap-2 rounded-xl border border-white/10 bg-[#1B1B1B] px-3 py-2 text-xs font-medium text-white hover:bg-white/5 transition-all uppercase"
+          >
+            <Globe size={14} />
+            {i18n.language === "pl" ? "EN" : "PL"}
+          </button>
+          {!editMode ? (
+            <button
+              onClick={() => setEditMode(true)}
+              className="rounded-xl border border-[#D6B36A]/25 bg-[#1B1B1B] px-4 py-2 text-sm font-medium text-[#D6B36A] hover:bg-[#D6B36A]/10 transition-all"
+            >
+              {t("editor.editor")}
+            </button>
+          ) : (
+            <button
+              onClick={() => setEditMode(false)}
+              className="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white hover:bg-white/10 transition-all"
+            >
+              {t("editor.preview")}
+            </button>
+          )}
+        </div>
+
         {editMode && (
           <aside className="rounded-[24px] border border-[#D6B36A]/20 bg-[#111111] p-4 shadow-[0_10px_30px_rgba(0,0,0,0.28)] lg:sticky lg:top-4 lg:h-fit">
             <div className="mb-4 flex items-center justify-between">
               <div>
                 <p className="text-[10px] uppercase tracking-[0.28em] text-[#D6B36A]">
-                  Live Editor
+                  {t("editor.liveEditor")}
                 </p>
-                <h2 className="mt-1 text-xl font-semibold">Control Panel</h2>
+                <h2 className="mt-1 text-xl font-semibold">
+                  {t("editor.controlPanel")}
+                </h2>
               </div>
-              <button
-                onClick={() => setEditMode(false)}
-                className="rounded-xl border border-[#D6B36A]/25 bg-[#1B1B1B] px-3 py-2 text-xs font-medium text-[#D6B36A]"
-              >
-                Preview
-              </button>
             </div>
 
             <div className="space-y-4">
@@ -703,10 +730,10 @@ export default function TestPage() {
                     onClick={exportJson}
                     className="w-full rounded-xl bg-[#D6B36A] px-3 py-2 text-sm font-medium text-black"
                   >
-                    Export JSON
+                    {t("editor.exportJson")}
                   </button>
                   <label className="flex cursor-pointer items-center justify-center rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm">
-                    Import JSON
+                    {t("editor.importJson")}
                     <input
                       type="file"
                       accept="application/json"
@@ -718,14 +745,14 @@ export default function TestPage() {
                     onClick={resetAll}
                     className="w-full rounded-xl border border-red-400/20 bg-red-400/10 px-3 py-2 text-sm text-red-200"
                   >
-                    Reset All
+                    {t("editor.resetAll")}
                   </button>
                 </div>
               </div>
 
               <div className="rounded-2xl border border-white/5 bg-[#1B1B1B] p-4 space-y-3">
                 <label className="block text-xs uppercase tracking-[0.2em] text-[#D6B36A]">
-                  Brand
+                  {t("editor.brand")}
                 </label>
                 <input
                   value={menuData.brand}
@@ -733,7 +760,7 @@ export default function TestPage() {
                   className="w-full rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm outline-none"
                 />
                 <label className="block text-xs uppercase tracking-[0.2em] text-[#D6B36A]">
-                  Title
+                  {t("editor.title")}
                 </label>
                 <input
                   value={menuData.title}
@@ -741,7 +768,7 @@ export default function TestPage() {
                   className="w-full rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm outline-none"
                 />
                 <label className="block text-xs uppercase tracking-[0.2em] text-[#D6B36A]">
-                  Subtitle
+                  {t("editor.subtitle")}
                 </label>
                 <textarea
                   value={menuData.subtitle}
@@ -754,13 +781,13 @@ export default function TestPage() {
               <div className="rounded-2xl border border-white/5 bg-[#1B1B1B] p-4">
                 <div className="mb-3 flex items-center justify-between">
                   <label className="text-xs uppercase tracking-[0.2em] text-[#D6B36A]">
-                    Categories
+                    {t("editor.categories")}
                   </label>
                   <button
                     onClick={addCategory}
                     className="rounded-xl bg-[#D6B36A] px-3 py-2 text-xs font-medium text-black"
                   >
-                    Add
+                    {t("editor.add")}
                   </button>
                 </div>
                 <div className="grid gap-2">
@@ -782,13 +809,13 @@ export default function TestPage() {
                     onClick={() => moveCategory(-1)}
                     className="rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm"
                   >
-                    Up
+                    {t("editor.up")}
                   </button>
                   <button
                     onClick={() => moveCategory(1)}
                     className="rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm"
                   >
-                    Down
+                    {t("editor.down")}
                   </button>
                 </div>
                 <input
@@ -800,20 +827,20 @@ export default function TestPage() {
                   onClick={removeCategory}
                   className="mt-3 w-full rounded-xl border border-red-400/20 bg-red-400/10 px-3 py-2 text-sm text-red-200"
                 >
-                  Remove Category
+                  {t("editor.removeCategory")}
                 </button>
               </div>
 
               <div className="rounded-2xl border border-white/5 bg-[#1B1B1B] p-4">
                 <div className="mb-3 flex items-center justify-between">
                   <label className="text-xs uppercase tracking-[0.2em] text-[#D6B36A]">
-                    Items
+                    {t("editor.items")}
                   </label>
                   <button
                     onClick={addItem}
                     className="rounded-xl bg-[#D6B36A] px-3 py-2 text-xs font-medium text-black"
                   >
-                    Add
+                    {t("editor.add")}
                   </button>
                 </div>
                 <div className="grid gap-2">
@@ -832,38 +859,38 @@ export default function TestPage() {
                     onClick={() => moveItem(-1)}
                     className="rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm"
                   >
-                    Up
+                    {t("editor.up")}
                   </button>
                   <button
                     onClick={() => moveItem(1)}
                     className="rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm"
                   >
-                    Down
+                    {t("editor.down")}
                   </button>
                 </div>
                 <div className="mt-3 space-y-3">
                   <input
                     value={selectedItem?.name || ""}
                     onChange={(e) => setItemField("name", e.target.value)}
-                    placeholder="Item name"
+                    placeholder={t("editor.itemName")}
                     className="w-full rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm outline-none"
                   />
                   <input
                     value={selectedItem?.desc || ""}
                     onChange={(e) => setItemField("desc", e.target.value)}
-                    placeholder="Description"
+                    placeholder={t("editor.description")}
                     className="w-full rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm outline-none"
                   />
                   <input
                     value={selectedItem?.price || ""}
                     onChange={(e) => setItemField("price", e.target.value)}
-                    placeholder="Price"
+                    placeholder={t("editor.price")}
                     className="w-full rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm outline-none"
                   />
                   <input
                     value={selectedItem?.tag || ""}
                     onChange={(e) => setItemField("tag", e.target.value)}
-                    placeholder="Tag"
+                    placeholder={t("editor.tag")}
                     className="w-full rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm outline-none"
                   />
                   <div className="grid gap-2">
@@ -871,7 +898,7 @@ export default function TestPage() {
                       onClick={() => fileInputRef.current?.click()}
                       className="rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm"
                     >
-                      Upload Image
+                      {t("editor.uploadImage")}
                     </button>
                     <input
                       ref={fileInputRef}
@@ -893,7 +920,7 @@ export default function TestPage() {
                   onClick={removeItem}
                   className="mt-3 w-full rounded-xl border border-red-400/20 bg-red-400/10 px-3 py-2 text-sm text-red-200"
                 >
-                  Remove Item
+                  {t("editor.removeItem")}
                 </button>
               </div>
             </div>
@@ -907,7 +934,7 @@ export default function TestPage() {
                 onClick={() => setEditMode(true)}
                 className="rounded-xl border border-[#D6B36A]/25 bg-[#1B1B1B] px-3 py-2 text-xs font-medium text-[#D6B36A]"
               >
-                Editor
+                {t("editor.editor")}
               </button>
             </div>
           )}
@@ -924,7 +951,7 @@ export default function TestPage() {
                 </span>
               </div>
               <p className="mt-7 text-[10px] uppercase tracking-[0.34em] text-[#D6B36A]">
-                Luxury Lounge Menu
+                {t("common.exploreMenu")}
               </p>
               <h1 className="mt-3 text-[38px] font-semibold leading-[1.02] tracking-[-0.03em] text-[#F5F2EA]">
                 {menuData.title}
@@ -942,10 +969,10 @@ export default function TestPage() {
               <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-14 bg-linear-to-l from-[#090909] via-[#090909]/95 to-transparent" />
               <div className="flex items-center justify-between px-4 pb-1 pt-2">
                 <p className="text-[10px] uppercase tracking-[0.24em] text-[#8B836F]">
-                  Browse categories
+                  {t("common.browseCategories")}
                 </p>
                 <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-[#D6B36A]">
-                  <span>Swipe</span>
+                  <span>{t("common.swipe")}</span>
                   <span className="text-xs">→</span>
                 </div>
               </div>
@@ -997,14 +1024,16 @@ export default function TestPage() {
                   <div className="mb-6 flex items-end justify-between">
                     <div>
                       <p className="text-[10px] uppercase tracking-[0.30em] text-[#CFAF6D]">
-                        {idx === 0 ? "Main Category" : "Selection"}
+                        {idx === 0
+                          ? t("editor.mainCategory")
+                          : t("editor.selection")}
                       </p>
                       <h2 className="mt-1 text-[27px] font-semibold tracking-[-0.03em] text-[#F7F3EB]">
                         {cat.name}
                       </h2>
                     </div>
                     <span className="text-[11px] tracking-[0.08em] text-[#8F8F8F]">
-                      {cat.items.length} items
+                      {t("editor.itemsCount", { count: cat.items.length })}
                     </span>
                   </div>
 
@@ -1057,7 +1086,7 @@ export default function TestPage() {
                     href="#top"
                     className="inline-flex items-center justify-center gap-2 rounded-full border border-[#D6B36A]/14 bg-[linear-gradient(180deg,#181818,#111111)] px-3.5 py-2 text-[10px] uppercase tracking-[0.18em] text-[#CFAF6D] shadow-[0_6px_18px_rgba(0,0,0,0.14)]"
                   >
-                    <span>Main Menu</span>
+                    <span>{t("common.backToMenu")}</span>
                     <span className="text-[10px] text-[#8B836F]">↑</span>
                   </a>
                 </div>
@@ -1069,7 +1098,7 @@ export default function TestPage() {
             href="#top"
             className="fixed bottom-5 right-5 z-30 inline-flex items-center gap-2 rounded-full border border-[#D6B36A]/16 bg-[linear-gradient(180deg,rgba(24,24,24,0.96),rgba(14,14,14,0.96))] px-4 py-3 text-[13px] text-[#E7CC8B] shadow-[0_12px_28px_rgba(0,0,0,0.24)] backdrop-blur-xl"
           >
-            <span>Menu</span>
+            <span>{t("common.menu")}</span>
             <span className="text-xs text-[#B3B3B3]">↑</span>
           </a>
         </div>
