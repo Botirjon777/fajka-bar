@@ -6,7 +6,7 @@ export default function SplashScreen() {
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8, ease: "easeInOut" }}
-      className="fixed inset-0 z-[200] flex items-center justify-center bg-black"
+      className="fixed inset-0 z-200 flex items-center justify-center bg-black"
     >
       <motion.div
         initial={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }}
@@ -15,7 +15,7 @@ export default function SplashScreen() {
         className="relative w-64 h-64 md:w-96 md:h-96"
       >
         <img
-          src="/images/logo.png"
+          src="/images/logo.webp"
           alt="Fajka Bar Logo"
           className="w-full h-full object-contain"
         />

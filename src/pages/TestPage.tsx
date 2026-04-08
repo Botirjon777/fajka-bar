@@ -22,7 +22,7 @@ interface MenuData {
 
 const STORAGE_KEY = "fajka-stable-menu-data-v1";
 const SPLASH_DURATION_MS = 2000;
-const LOGO_IMG_PATH = "/images/logo.png";
+const LOGO_IMG_PATH = "/images/logo.webp";
 
 const IMAGE_POOL = [
   "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=900&q=80",
@@ -52,94 +52,293 @@ function createInitialData(): MenuData {
   return {
     brand: "Fajka Lounge",
     title: "Signature Shisha Experience",
-    subtitle: "Elegant QR menu concept with premium styling, compact thumbnails, and stable live editing.",
+    subtitle:
+      "Elegant QR menu concept with premium styling, compact thumbnails, and stable live editing.",
     categories: [
       {
         name: "Signature",
         items: [
-          { name: "Fajka Gold", desc: "Smooth, rich, house signature mix", price: "95 zł", tag: "Most Popular", image: fallbackImage(0) },
-          { name: "Dark Velvet", desc: "Deep grape and mint profile", price: "92 zł", tag: "Premium", image: fallbackImage(1) },
-          { name: "Royal Night", desc: "Berry, ice, elegant finish", price: "98 zł", tag: "Recommended", image: fallbackImage(2) },
+          {
+            name: "Fajka Gold",
+            desc: "Smooth, rich, house signature mix",
+            price: "95 zł",
+            tag: "Most Popular",
+            image: fallbackImage(0),
+          },
+          {
+            name: "Dark Velvet",
+            desc: "Deep grape and mint profile",
+            price: "92 zł",
+            tag: "Premium",
+            image: fallbackImage(1),
+          },
+          {
+            name: "Royal Night",
+            desc: "Berry, ice, elegant finish",
+            price: "98 zł",
+            tag: "Recommended",
+            image: fallbackImage(2),
+          },
         ],
       },
       {
         name: "Classic",
         items: [
-          { name: "Love 66", desc: "Fresh, sweet, balanced classic", price: "80 zł", tag: "", image: fallbackImage(3) },
-          { name: "Mint", desc: "Clean cooling classic flavour", price: "75 zł", tag: "", image: fallbackImage(4) },
-          { name: "Blueberry", desc: "Soft fruit profile, smooth smoke", price: "78 zł", tag: "", image: fallbackImage(5) },
+          {
+            name: "Love 66",
+            desc: "Fresh, sweet, balanced classic",
+            price: "80 zł",
+            tag: "",
+            image: fallbackImage(3),
+          },
+          {
+            name: "Mint",
+            desc: "Clean cooling classic flavour",
+            price: "75 zł",
+            tag: "",
+            image: fallbackImage(4),
+          },
+          {
+            name: "Blueberry",
+            desc: "Soft fruit profile, smooth smoke",
+            price: "78 zł",
+            tag: "",
+            image: fallbackImage(5),
+          },
         ],
       },
       {
         name: "Drinks",
         items: [
-          { name: "Berry Mojito 0%", desc: "Fresh mint, berry, lime", price: "24 zł", tag: "", image: fallbackImage(6) },
-          { name: "Golden Lemonade", desc: "Elegant citrus house cooler", price: "22 zł", tag: "", image: fallbackImage(7) },
-          { name: "Espresso", desc: "Short intense coffee shot", price: "12 zł", tag: "", image: fallbackImage(0) },
+          {
+            name: "Berry Mojito 0%",
+            desc: "Fresh mint, berry, lime",
+            price: "24 zł",
+            tag: "",
+            image: fallbackImage(6),
+          },
+          {
+            name: "Golden Lemonade",
+            desc: "Elegant citrus house cooler",
+            price: "22 zł",
+            tag: "",
+            image: fallbackImage(7),
+          },
+          {
+            name: "Espresso",
+            desc: "Short intense coffee shot",
+            price: "12 zł",
+            tag: "",
+            image: fallbackImage(0),
+          },
         ],
       },
       {
         name: "Premium Mix",
         items: [
-          { name: "Golden Smoke", desc: "Luxury house blend, velvety draw", price: "99 zł", tag: "Premium", image: fallbackImage(1) },
-          { name: "Noir Edition", desc: "Dark fruit and spice character", price: "102 zł", tag: "", image: fallbackImage(2) },
-          { name: "Amber Reserve", desc: "Refined sweet premium composition", price: "104 zł", tag: "", image: fallbackImage(3) },
+          {
+            name: "Golden Smoke",
+            desc: "Luxury house blend, velvety draw",
+            price: "99 zł",
+            tag: "Premium",
+            image: fallbackImage(1),
+          },
+          {
+            name: "Noir Edition",
+            desc: "Dark fruit and spice character",
+            price: "102 zł",
+            tag: "",
+            image: fallbackImage(2),
+          },
+          {
+            name: "Amber Reserve",
+            desc: "Refined sweet premium composition",
+            price: "104 zł",
+            tag: "",
+            image: fallbackImage(3),
+          },
         ],
       },
       {
         name: "Ice Mix",
         items: [
-          { name: "Frozen Sky", desc: "Icy mint with blueberry notes", price: "88 zł", tag: "", image: fallbackImage(4) },
-          { name: "Polar Love", desc: "Love 66 with extra cooling", price: "89 zł", tag: "", image: fallbackImage(5) },
-          { name: "Ice Queen", desc: "Elegant fruit blend, cold finish", price: "90 zł", tag: "", image: fallbackImage(6) },
+          {
+            name: "Frozen Sky",
+            desc: "Icy mint with blueberry notes",
+            price: "88 zł",
+            tag: "",
+            image: fallbackImage(4),
+          },
+          {
+            name: "Polar Love",
+            desc: "Love 66 with extra cooling",
+            price: "89 zł",
+            tag: "",
+            image: fallbackImage(5),
+          },
+          {
+            name: "Ice Queen",
+            desc: "Elegant fruit blend, cold finish",
+            price: "90 zł",
+            tag: "",
+            image: fallbackImage(6),
+          },
         ],
       },
       {
         name: "Fruit Mix",
         items: [
-          { name: "Berry Bloom", desc: "Mixed berries with soft sweetness", price: "84 zł", tag: "", image: fallbackImage(7) },
-          { name: "Tropical Silk", desc: "Mango, peach, exotic finish", price: "86 zł", tag: "", image: fallbackImage(0) },
-          { name: "Citrus Garden", desc: "Fresh lemon-lime fruit mix", price: "82 zł", tag: "", image: fallbackImage(1) },
+          {
+            name: "Berry Bloom",
+            desc: "Mixed berries with soft sweetness",
+            price: "84 zł",
+            tag: "",
+            image: fallbackImage(7),
+          },
+          {
+            name: "Tropical Silk",
+            desc: "Mango, peach, exotic finish",
+            price: "86 zł",
+            tag: "",
+            image: fallbackImage(0),
+          },
+          {
+            name: "Citrus Garden",
+            desc: "Fresh lemon-lime fruit mix",
+            price: "82 zł",
+            tag: "",
+            image: fallbackImage(1),
+          },
         ],
       },
       {
         name: "Tea",
         items: [
-          { name: "Moroccan Mint", desc: "Fresh aromatic mint infusion", price: "18 zł", tag: "", image: fallbackImage(2) },
-          { name: "Black Tea", desc: "Strong and classic serving", price: "16 zł", tag: "", image: fallbackImage(3) },
-          { name: "Fruit Tea", desc: "Warm sweet-fruit tea blend", price: "19 zł", tag: "", image: fallbackImage(4) },
+          {
+            name: "Moroccan Mint",
+            desc: "Fresh aromatic mint infusion",
+            price: "18 zł",
+            tag: "",
+            image: fallbackImage(2),
+          },
+          {
+            name: "Black Tea",
+            desc: "Strong and classic serving",
+            price: "16 zł",
+            tag: "",
+            image: fallbackImage(3),
+          },
+          {
+            name: "Fruit Tea",
+            desc: "Warm sweet-fruit tea blend",
+            price: "19 zł",
+            tag: "",
+            image: fallbackImage(4),
+          },
         ],
       },
       {
         name: "Coffee",
         items: [
-          { name: "Cappuccino", desc: "Smooth milk foam texture", price: "16 zł", tag: "", image: fallbackImage(5) },
-          { name: "Latte", desc: "Balanced creamy coffee", price: "17 zł", tag: "", image: fallbackImage(6) },
-          { name: "Iced Latte", desc: "Cold creamy coffee option", price: "18 zł", tag: "", image: fallbackImage(7) },
+          {
+            name: "Cappuccino",
+            desc: "Smooth milk foam texture",
+            price: "16 zł",
+            tag: "",
+            image: fallbackImage(5),
+          },
+          {
+            name: "Latte",
+            desc: "Balanced creamy coffee",
+            price: "17 zł",
+            tag: "",
+            image: fallbackImage(6),
+          },
+          {
+            name: "Iced Latte",
+            desc: "Cold creamy coffee option",
+            price: "18 zł",
+            tag: "",
+            image: fallbackImage(7),
+          },
         ],
       },
       {
         name: "Mocktails",
         items: [
-          { name: "Lounge Sunset", desc: "Orange, passion fruit, ice", price: "25 zł", tag: "", image: fallbackImage(0) },
-          { name: "Golden Citrus", desc: "Elegant citrus house cooler", price: "23 zł", tag: "", image: fallbackImage(1) },
-          { name: "Berry Fresh", desc: "Fresh berries and lime", price: "24 zł", tag: "", image: fallbackImage(2) },
+          {
+            name: "Lounge Sunset",
+            desc: "Orange, passion fruit, ice",
+            price: "25 zł",
+            tag: "",
+            image: fallbackImage(0),
+          },
+          {
+            name: "Golden Citrus",
+            desc: "Elegant citrus house cooler",
+            price: "23 zł",
+            tag: "",
+            image: fallbackImage(1),
+          },
+          {
+            name: "Berry Fresh",
+            desc: "Fresh berries and lime",
+            price: "24 zł",
+            tag: "",
+            image: fallbackImage(2),
+          },
         ],
       },
       {
         name: "Desserts",
         items: [
-          { name: "San Sebastian", desc: "Creamy cheesecake, premium slice", price: "22 zł", tag: "", image: fallbackImage(3) },
-          { name: "Chocolate Dream", desc: "Dark chocolate layered dessert", price: "21 zł", tag: "", image: fallbackImage(4) },
-          { name: "Tiramisu", desc: "Classic soft coffee dessert", price: "20 zł", tag: "", image: fallbackImage(5) },
+          {
+            name: "San Sebastian",
+            desc: "Creamy cheesecake, premium slice",
+            price: "22 zł",
+            tag: "",
+            image: fallbackImage(3),
+          },
+          {
+            name: "Chocolate Dream",
+            desc: "Dark chocolate layered dessert",
+            price: "21 zł",
+            tag: "",
+            image: fallbackImage(4),
+          },
+          {
+            name: "Tiramisu",
+            desc: "Classic soft coffee dessert",
+            price: "20 zł",
+            tag: "",
+            image: fallbackImage(5),
+          },
         ],
       },
       {
         name: "Food",
         items: [
-          { name: "Chicken Wrap", desc: "Light warm lounge snack", price: "28 zł", tag: "", image: fallbackImage(6) },
-          { name: "Crispy Fries", desc: "Golden side, easy to share", price: "16 zł", tag: "", image: fallbackImage(7) },
-          { name: "Club Sandwich", desc: "Simple premium snack option", price: "30 zł", tag: "", image: fallbackImage(0) },
+          {
+            name: "Chicken Wrap",
+            desc: "Light warm lounge snack",
+            price: "28 zł",
+            tag: "",
+            image: fallbackImage(6),
+          },
+          {
+            name: "Crispy Fries",
+            desc: "Golden side, easy to share",
+            price: "16 zł",
+            tag: "",
+            image: fallbackImage(7),
+          },
+          {
+            name: "Club Sandwich",
+            desc: "Simple premium snack option",
+            price: "30 zł",
+            tag: "",
+            image: fallbackImage(0),
+          },
         ],
       },
     ],
@@ -172,7 +371,10 @@ export default function TestPage() {
   const dragRef = useRef({ isDown: false, startX: 0, scrollLeft: 0 });
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setShowSplash(false), SPLASH_DURATION_MS);
+    const timer = window.setTimeout(
+      () => setShowSplash(false),
+      SPLASH_DURATION_MS,
+    );
     return () => window.clearTimeout(timer);
   }, []);
 
@@ -196,12 +398,28 @@ export default function TestPage() {
   }, [menuData]);
 
   const sectionLinks = useMemo(
-    () => menuData.categories.map((cat, i) => ({ ...cat, id: safeId(cat.name, i) })),
-    [menuData.categories]
+    () =>
+      menuData.categories.map((cat, i) => ({
+        ...cat,
+        id: safeId(cat.name, i),
+      })),
+    [menuData.categories],
   );
 
-  const selectedCategory = menuData.categories[Math.max(0, Math.min(selectedCategoryIndex, menuData.categories.length - 1))];
-  const selectedItem = selectedCategory?.items[Math.max(0, Math.min(selectedItemIndex, (selectedCategory?.items.length || 1) - 1))];
+  const selectedCategory =
+    menuData.categories[
+      Math.max(
+        0,
+        Math.min(selectedCategoryIndex, menuData.categories.length - 1),
+      )
+    ];
+  const selectedItem =
+    selectedCategory?.items[
+      Math.max(
+        0,
+        Math.min(selectedItemIndex, (selectedCategory?.items.length || 1) - 1),
+      )
+    ];
 
   const updateIndicator = () => {
     const slider = categoryScrollRef.current;
@@ -210,7 +428,8 @@ export default function TestPage() {
 
     const maxScroll = Math.max(0, slider.scrollWidth - slider.clientWidth);
     const trackWidth = track.clientWidth;
-    const visibleRatio = slider.scrollWidth > 0 ? slider.clientWidth / slider.scrollWidth : 1;
+    const visibleRatio =
+      slider.scrollWidth > 0 ? slider.clientWidth / slider.scrollWidth : 1;
     const thumbWidth = Math.max(56, trackWidth * Math.min(visibleRatio, 1));
     const maxLeft = Math.max(0, trackWidth - thumbWidth);
     const left = maxScroll > 0 ? (slider.scrollLeft / maxScroll) * maxLeft : 0;
@@ -231,14 +450,19 @@ export default function TestPage() {
     };
   }, [menuData.categories.length]);
 
-  const setRootField = (field: keyof Omit<MenuData, "categories">, value: string) => {
+  const setRootField = (
+    field: keyof Omit<MenuData, "categories">,
+    value: string,
+  ) => {
     setMenuData((prev) => ({ ...prev, [field]: value }));
   };
 
   const setCategoryName = (value: string) => {
     setMenuData((prev) => ({
       ...prev,
-      categories: prev.categories.map((cat, i) => (i === selectedCategoryIndex ? { ...cat, name: value } : cat)),
+      categories: prev.categories.map((cat, i) =>
+        i === selectedCategoryIndex ? { ...cat, name: value } : cat,
+      ),
     }));
   };
 
@@ -249,7 +473,9 @@ export default function TestPage() {
         if (i !== selectedCategoryIndex) return cat;
         return {
           ...cat,
-          items: cat.items.map((item, j) => (j === selectedItemIndex ? { ...item, [field]: value } : item)),
+          items: cat.items.map((item, j) =>
+            j === selectedItemIndex ? { ...item, [field]: value } : item,
+          ),
         };
       }),
     }));
@@ -269,7 +495,15 @@ export default function TestPage() {
         ...prev.categories,
         {
           name: `New Category ${prev.categories.length + 1}`,
-          items: [{ name: "New Item", desc: "New description", price: "00 zł", tag: "", image: fallbackImage(prev.categories.length) }],
+          items: [
+            {
+              name: "New Item",
+              desc: "New description",
+              price: "00 zł",
+              tag: "",
+              image: fallbackImage(prev.categories.length),
+            },
+          ],
         },
       ],
     }));
@@ -285,9 +519,18 @@ export default function TestPage() {
         i === selectedCategoryIndex
           ? {
               ...cat,
-              items: [...cat.items, { name: "New Item", desc: "New description", price: "00 zł", tag: "", image: fallbackImage(cat.items.length + i) }],
+              items: [
+                ...cat.items,
+                {
+                  name: "New Item",
+                  desc: "New description",
+                  price: "00 zł",
+                  tag: "",
+                  image: fallbackImage(cat.items.length + i),
+                },
+              ],
             }
-          : cat
+          : cat,
       ),
     }));
     setSelectedItemIndex(selectedCategory.items.length);
@@ -295,7 +538,10 @@ export default function TestPage() {
 
   const removeCategory = () => {
     if (menuData.categories.length <= 1) return;
-    setMenuData((prev) => ({ ...prev, categories: prev.categories.filter((_, i) => i !== selectedCategoryIndex) }));
+    setMenuData((prev) => ({
+      ...prev,
+      categories: prev.categories.filter((_, i) => i !== selectedCategoryIndex),
+    }));
     setSelectedCategoryIndex(0);
     setSelectedItemIndex(0);
   };
@@ -305,7 +551,12 @@ export default function TestPage() {
     setMenuData((prev) => ({
       ...prev,
       categories: prev.categories.map((cat, i) =>
-        i === selectedCategoryIndex ? { ...cat, items: cat.items.filter((_, j) => j !== selectedItemIndex) } : cat
+        i === selectedCategoryIndex
+          ? {
+              ...cat,
+              items: cat.items.filter((_, j) => j !== selectedItemIndex),
+            }
+          : cat,
       ),
     }));
     setSelectedItemIndex(0);
@@ -316,7 +567,10 @@ export default function TestPage() {
     if (next < 0 || next >= menuData.categories.length) return;
     setMenuData((prev) => {
       const categories = [...prev.categories];
-      [categories[selectedCategoryIndex], categories[next]] = [categories[next], categories[selectedCategoryIndex]];
+      [categories[selectedCategoryIndex], categories[next]] = [
+        categories[next],
+        categories[selectedCategoryIndex],
+      ];
       return { ...prev, categories };
     });
     setSelectedCategoryIndex(next);
@@ -331,7 +585,10 @@ export default function TestPage() {
       const categories = [...prev.categories];
       const category = { ...categories[selectedCategoryIndex] };
       const items = [...category.items];
-      [items[selectedItemIndex], items[next]] = [items[next], items[selectedItemIndex]];
+      [items[selectedItemIndex], items[next]] = [
+        items[next],
+        items[selectedItemIndex],
+      ];
       category.items = items;
       categories[selectedCategoryIndex] = category;
       return { ...prev, categories };
@@ -340,7 +597,9 @@ export default function TestPage() {
   };
 
   const exportJson = () => {
-    const blob = new Blob([JSON.stringify(menuData, null, 2)], { type: "application/json" });
+    const blob = new Blob([JSON.stringify(menuData, null, 2)], {
+      type: "application/json",
+    });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
@@ -394,7 +653,8 @@ export default function TestPage() {
     if (!slider || !dragRef.current.isDown) return;
     e.preventDefault();
     const x = e.pageX - slider.offsetLeft;
-    slider.scrollLeft = dragRef.current.scrollLeft - (x - dragRef.current.startX) * 1.2;
+    slider.scrollLeft =
+      dragRef.current.scrollLeft - (x - dragRef.current.startX) * 1.2;
     updateIndicator();
   };
 
@@ -405,7 +665,7 @@ export default function TestPage() {
   return (
     <div className="min-h-screen bg-[#070707] text-[#F5F2EA]">
       {showSplash ? (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black">
+        <div className="fixed inset-0 z-100 flex items-center justify-center bg-black">
           <img
             src={LOGO_IMG_PATH}
             alt="Fajka Bar Lounge logo"
@@ -413,87 +673,228 @@ export default function TestPage() {
           />
         </div>
       ) : null}
-      <div className={`mx-auto grid max-w-7xl gap-6 p-4 lg:justify-center lg:p-6 ${editMode ? "lg:grid-cols-[340px_minmax(0,430px)]" : "lg:grid-cols-[430px]"}`}>
+      <div
+        className={`mx-auto grid max-w-7xl gap-6 p-4 lg:justify-center lg:p-6 ${editMode ? "lg:grid-cols-[340px_minmax(0,430px)]" : "lg:grid-cols-[430px]"}`}
+      >
         {editMode && (
           <aside className="rounded-[24px] border border-[#D6B36A]/20 bg-[#111111] p-4 shadow-[0_10px_30px_rgba(0,0,0,0.28)] lg:sticky lg:top-4 lg:h-fit">
             <div className="mb-4 flex items-center justify-between">
               <div>
-                <p className="text-[10px] uppercase tracking-[0.28em] text-[#D6B36A]">Live Editor</p>
+                <p className="text-[10px] uppercase tracking-[0.28em] text-[#D6B36A]">
+                  Live Editor
+                </p>
                 <h2 className="mt-1 text-xl font-semibold">Control Panel</h2>
               </div>
-              <button onClick={() => setEditMode(false)} className="rounded-xl border border-[#D6B36A]/25 bg-[#1B1B1B] px-3 py-2 text-xs font-medium text-[#D6B36A]">Preview</button>
+              <button
+                onClick={() => setEditMode(false)}
+                className="rounded-xl border border-[#D6B36A]/25 bg-[#1B1B1B] px-3 py-2 text-xs font-medium text-[#D6B36A]"
+              >
+                Preview
+              </button>
             </div>
 
             <div className="space-y-4">
               <div className="rounded-2xl border border-white/5 bg-[#1B1B1B] p-4">
-                <p className="mb-3 text-xs uppercase tracking-[0.2em] text-[#D6B36A]">Data</p>
+                <p className="mb-3 text-xs uppercase tracking-[0.2em] text-[#D6B36A]">
+                  Data
+                </p>
                 <div className="grid gap-2">
-                  <button onClick={exportJson} className="w-full rounded-xl bg-[#D6B36A] px-3 py-2 text-sm font-medium text-black">Export JSON</button>
+                  <button
+                    onClick={exportJson}
+                    className="w-full rounded-xl bg-[#D6B36A] px-3 py-2 text-sm font-medium text-black"
+                  >
+                    Export JSON
+                  </button>
                   <label className="flex cursor-pointer items-center justify-center rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm">
                     Import JSON
-                    <input type="file" accept="application/json" onChange={importJson} className="hidden" />
+                    <input
+                      type="file"
+                      accept="application/json"
+                      onChange={importJson}
+                      className="hidden"
+                    />
                   </label>
-                  <button onClick={resetAll} className="w-full rounded-xl border border-red-400/20 bg-red-400/10 px-3 py-2 text-sm text-red-200">Reset All</button>
+                  <button
+                    onClick={resetAll}
+                    className="w-full rounded-xl border border-red-400/20 bg-red-400/10 px-3 py-2 text-sm text-red-200"
+                  >
+                    Reset All
+                  </button>
                 </div>
               </div>
 
               <div className="rounded-2xl border border-white/5 bg-[#1B1B1B] p-4 space-y-3">
-                <label className="block text-xs uppercase tracking-[0.2em] text-[#D6B36A]">Brand</label>
-                <input value={menuData.brand} onChange={(e) => setRootField("brand", e.target.value)} className="w-full rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm outline-none" />
-                <label className="block text-xs uppercase tracking-[0.2em] text-[#D6B36A]">Title</label>
-                <input value={menuData.title} onChange={(e) => setRootField("title", e.target.value)} className="w-full rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm outline-none" />
-                <label className="block text-xs uppercase tracking-[0.2em] text-[#D6B36A]">Subtitle</label>
-                <textarea value={menuData.subtitle} onChange={(e) => setRootField("subtitle", e.target.value)} rows={3} className="w-full rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm outline-none" />
+                <label className="block text-xs uppercase tracking-[0.2em] text-[#D6B36A]">
+                  Brand
+                </label>
+                <input
+                  value={menuData.brand}
+                  onChange={(e) => setRootField("brand", e.target.value)}
+                  className="w-full rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm outline-none"
+                />
+                <label className="block text-xs uppercase tracking-[0.2em] text-[#D6B36A]">
+                  Title
+                </label>
+                <input
+                  value={menuData.title}
+                  onChange={(e) => setRootField("title", e.target.value)}
+                  className="w-full rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm outline-none"
+                />
+                <label className="block text-xs uppercase tracking-[0.2em] text-[#D6B36A]">
+                  Subtitle
+                </label>
+                <textarea
+                  value={menuData.subtitle}
+                  onChange={(e) => setRootField("subtitle", e.target.value)}
+                  rows={3}
+                  className="w-full rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm outline-none"
+                />
               </div>
 
               <div className="rounded-2xl border border-white/5 bg-[#1B1B1B] p-4">
                 <div className="mb-3 flex items-center justify-between">
-                  <label className="text-xs uppercase tracking-[0.2em] text-[#D6B36A]">Categories</label>
-                  <button onClick={addCategory} className="rounded-xl bg-[#D6B36A] px-3 py-2 text-xs font-medium text-black">Add</button>
+                  <label className="text-xs uppercase tracking-[0.2em] text-[#D6B36A]">
+                    Categories
+                  </label>
+                  <button
+                    onClick={addCategory}
+                    className="rounded-xl bg-[#D6B36A] px-3 py-2 text-xs font-medium text-black"
+                  >
+                    Add
+                  </button>
                 </div>
                 <div className="grid gap-2">
                   {menuData.categories.map((cat, i) => (
-                    <button key={`cat-${i}`} onClick={() => { setSelectedCategoryIndex(i); setSelectedItemIndex(0); }} className={`rounded-xl border px-3 py-2 text-left text-sm ${i === selectedCategoryIndex ? "border-[#D6B36A]/40 bg-[#222222]" : "border-white/5 bg-[#101010] text-[#A6A6A6]"}`}>
+                    <button
+                      key={`cat-${i}`}
+                      onClick={() => {
+                        setSelectedCategoryIndex(i);
+                        setSelectedItemIndex(0);
+                      }}
+                      className={`rounded-xl border px-3 py-2 text-left text-sm ${i === selectedCategoryIndex ? "border-[#D6B36A]/40 bg-[#222222]" : "border-white/5 bg-[#101010] text-[#A6A6A6]"}`}
+                    >
                       {cat.name}
                     </button>
                   ))}
                 </div>
                 <div className="mt-3 grid grid-cols-2 gap-2">
-                  <button onClick={() => moveCategory(-1)} className="rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm">Up</button>
-                  <button onClick={() => moveCategory(1)} className="rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm">Down</button>
+                  <button
+                    onClick={() => moveCategory(-1)}
+                    className="rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm"
+                  >
+                    Up
+                  </button>
+                  <button
+                    onClick={() => moveCategory(1)}
+                    className="rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm"
+                  >
+                    Down
+                  </button>
                 </div>
-                <input value={selectedCategory?.name || ""} onChange={(e) => setCategoryName(e.target.value)} className="mt-3 w-full rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm outline-none" />
-                <button onClick={removeCategory} className="mt-3 w-full rounded-xl border border-red-400/20 bg-red-400/10 px-3 py-2 text-sm text-red-200">Remove Category</button>
+                <input
+                  value={selectedCategory?.name || ""}
+                  onChange={(e) => setCategoryName(e.target.value)}
+                  className="mt-3 w-full rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm outline-none"
+                />
+                <button
+                  onClick={removeCategory}
+                  className="mt-3 w-full rounded-xl border border-red-400/20 bg-red-400/10 px-3 py-2 text-sm text-red-200"
+                >
+                  Remove Category
+                </button>
               </div>
 
               <div className="rounded-2xl border border-white/5 bg-[#1B1B1B] p-4">
                 <div className="mb-3 flex items-center justify-between">
-                  <label className="text-xs uppercase tracking-[0.2em] text-[#D6B36A]">Items</label>
-                  <button onClick={addItem} className="rounded-xl bg-[#D6B36A] px-3 py-2 text-xs font-medium text-black">Add</button>
+                  <label className="text-xs uppercase tracking-[0.2em] text-[#D6B36A]">
+                    Items
+                  </label>
+                  <button
+                    onClick={addItem}
+                    className="rounded-xl bg-[#D6B36A] px-3 py-2 text-xs font-medium text-black"
+                  >
+                    Add
+                  </button>
                 </div>
                 <div className="grid gap-2">
                   {selectedCategory?.items.map((item, i) => (
-                    <button key={`item-${i}`} onClick={() => setSelectedItemIndex(i)} className={`rounded-xl border px-3 py-2 text-left text-sm ${i === selectedItemIndex ? "border-[#D6B36A]/40 bg-[#222222]" : "border-white/5 bg-[#101010] text-[#A6A6A6]"}`}>
+                    <button
+                      key={`item-${i}`}
+                      onClick={() => setSelectedItemIndex(i)}
+                      className={`rounded-xl border px-3 py-2 text-left text-sm ${i === selectedItemIndex ? "border-[#D6B36A]/40 bg-[#222222]" : "border-white/5 bg-[#101010] text-[#A6A6A6]"}`}
+                    >
                       {item.name}
                     </button>
                   ))}
                 </div>
                 <div className="mt-3 grid grid-cols-2 gap-2">
-                  <button onClick={() => moveItem(-1)} className="rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm">Up</button>
-                  <button onClick={() => moveItem(1)} className="rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm">Down</button>
+                  <button
+                    onClick={() => moveItem(-1)}
+                    className="rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm"
+                  >
+                    Up
+                  </button>
+                  <button
+                    onClick={() => moveItem(1)}
+                    className="rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm"
+                  >
+                    Down
+                  </button>
                 </div>
                 <div className="mt-3 space-y-3">
-                  <input value={selectedItem?.name || ""} onChange={(e) => setItemField("name", e.target.value)} placeholder="Item name" className="w-full rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm outline-none" />
-                  <input value={selectedItem?.desc || ""} onChange={(e) => setItemField("desc", e.target.value)} placeholder="Description" className="w-full rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm outline-none" />
-                  <input value={selectedItem?.price || ""} onChange={(e) => setItemField("price", e.target.value)} placeholder="Price" className="w-full rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm outline-none" />
-                  <input value={selectedItem?.tag || ""} onChange={(e) => setItemField("tag", e.target.value)} placeholder="Tag" className="w-full rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm outline-none" />
+                  <input
+                    value={selectedItem?.name || ""}
+                    onChange={(e) => setItemField("name", e.target.value)}
+                    placeholder="Item name"
+                    className="w-full rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm outline-none"
+                  />
+                  <input
+                    value={selectedItem?.desc || ""}
+                    onChange={(e) => setItemField("desc", e.target.value)}
+                    placeholder="Description"
+                    className="w-full rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm outline-none"
+                  />
+                  <input
+                    value={selectedItem?.price || ""}
+                    onChange={(e) => setItemField("price", e.target.value)}
+                    placeholder="Price"
+                    className="w-full rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm outline-none"
+                  />
+                  <input
+                    value={selectedItem?.tag || ""}
+                    onChange={(e) => setItemField("tag", e.target.value)}
+                    placeholder="Tag"
+                    className="w-full rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm outline-none"
+                  />
                   <div className="grid gap-2">
-                    <button onClick={() => fileInputRef.current?.click()} className="rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm">Upload Image</button>
-                    <input ref={fileInputRef} type="file" accept="image/*" className="hidden" onChange={(e) => uploadImage(e.target.files?.[0])} />
-                    {selectedItem?.image ? <img src={selectedItem.image} alt={selectedItem.name} className="h-24 w-full rounded-xl border border-white/10 object-cover" /> : null}
+                    <button
+                      onClick={() => fileInputRef.current?.click()}
+                      className="rounded-xl border border-white/10 bg-[#0E0E0E] px-3 py-2 text-sm"
+                    >
+                      Upload Image
+                    </button>
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={(e) => uploadImage(e.target.files?.[0])}
+                    />
+                    {selectedItem?.image ? (
+                      <img
+                        src={selectedItem.image}
+                        alt={selectedItem.name}
+                        className="h-24 w-full rounded-xl border border-white/10 object-cover"
+                      />
+                    ) : null}
                   </div>
                 </div>
-                <button onClick={removeItem} className="mt-3 w-full rounded-xl border border-red-400/20 bg-red-400/10 px-3 py-2 text-sm text-red-200">Remove Item</button>
+                <button
+                  onClick={removeItem}
+                  className="mt-3 w-full rounded-xl border border-red-400/20 bg-red-400/10 px-3 py-2 text-sm text-red-200"
+                >
+                  Remove Item
+                </button>
               </div>
             </div>
           </aside>
@@ -502,29 +903,47 @@ export default function TestPage() {
         <div className="mx-auto w-full max-w-md overflow-hidden rounded-[34px] border border-[#D6B36A]/10 bg-[#090909] shadow-[0_24px_70px_rgba(0,0,0,0.48)]">
           {!editMode && (
             <div className="p-4 pb-0 text-right">
-              <button onClick={() => setEditMode(true)} className="rounded-xl border border-[#D6B36A]/25 bg-[#1B1B1B] px-3 py-2 text-xs font-medium text-[#D6B36A]">Editor</button>
+              <button
+                onClick={() => setEditMode(true)}
+                className="rounded-xl border border-[#D6B36A]/25 bg-[#1B1B1B] px-3 py-2 text-xs font-medium text-[#D6B36A]"
+              >
+                Editor
+              </button>
             </div>
           )}
 
-          <section id="top" className="relative overflow-hidden rounded-t-[34px] border-b border-[#D6B36A]/15 bg-[#090909]">
+          <section
+            id="top"
+            className="relative overflow-hidden rounded-t-[34px] border-b border-[#D6B36A]/15 bg-[#090909]"
+          >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(214,179,106,0.18),transparent_36%)]" />
             <div className="relative px-6 pb-8 pt-9 text-center">
               <div className="inline-flex items-center justify-center rounded-full border border-[#D6B36A]/35 bg-[linear-gradient(180deg,rgba(26,26,26,0.98),rgba(14,14,14,0.98))] px-6 py-2.5 shadow-[0_16px_40px_rgba(0,0,0,0.34)]">
-                <span className="text-[10px] uppercase tracking-[0.38em] text-[#E7CC8B]">{menuData.brand}</span>
+                <span className="text-[10px] uppercase tracking-[0.38em] text-[#E7CC8B]">
+                  {menuData.brand}
+                </span>
               </div>
-              <p className="mt-7 text-[10px] uppercase tracking-[0.34em] text-[#D6B36A]">Luxury Lounge Menu</p>
-              <h1 className="mt-3 text-[38px] font-semibold leading-[1.02] tracking-[-0.03em] text-[#F5F2EA]">{menuData.title}</h1>
-              <div className="mx-auto mt-4 h-px w-24 bg-gradient-to-r from-transparent via-[#D6B36A]/70 to-transparent" />
-              <p className="mx-auto mt-5 max-w-[320px] text-[14px] leading-7 text-[#A6A6A6]">{menuData.subtitle}</p>
+              <p className="mt-7 text-[10px] uppercase tracking-[0.34em] text-[#D6B36A]">
+                Luxury Lounge Menu
+              </p>
+              <h1 className="mt-3 text-[38px] font-semibold leading-[1.02] tracking-[-0.03em] text-[#F5F2EA]">
+                {menuData.title}
+              </h1>
+              <div className="mx-auto mt-4 h-px w-24 bg-linear-to-r from-transparent via-[#D6B36A]/70 to-transparent" />
+              <p className="mx-auto mt-5 max-w-[320px] text-[14px] leading-7 text-[#A6A6A6]">
+                {menuData.subtitle}
+              </p>
             </div>
           </section>
 
           <section className="sticky top-0 z-20 border-b border-white/5 bg-[#090909]/95 backdrop-blur-xl shadow-[0_8px_20px_rgba(0,0,0,0.12)]">
             <div className="relative">
-              <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-[#090909] to-transparent" />
-              <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-14 bg-gradient-to-l from-[#090909] via-[#090909]/95 to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-linear-to-r from-[#090909] to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-14 bg-linear-to-l from-[#090909] via-[#090909]/95 to-transparent" />
               <div className="flex items-center justify-between px-4 pb-1 pt-2">
-                <p className="text-[10px] uppercase tracking-[0.24em] text-[#8B836F]">Browse categories</p>
+                <p className="text-[10px] uppercase tracking-[0.24em] text-[#8B836F]">
+                  Browse categories
+                </p>
                 <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-[#D6B36A]">
                   <span>Swipe</span>
                   <span className="text-xs">→</span>
@@ -540,7 +959,11 @@ export default function TestPage() {
                 className="flex cursor-grab gap-2 overflow-x-auto px-4 py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden active:cursor-grabbing select-none"
               >
                 {sectionLinks.map((cat) => (
-                  <a key={cat.id} href={`#${cat.id}`} className="whitespace-nowrap rounded-full border border-[#D6B36A]/14 bg-[linear-gradient(180deg,#191919,#131313)] px-4 py-2.5 text-[13px] text-[#E7CC8B] shadow-[0_6px_18px_rgba(0,0,0,0.16)]">
+                  <a
+                    key={cat.id}
+                    href={`#${cat.id}`}
+                    className="whitespace-nowrap rounded-full border border-[#D6B36A]/14 bg-[linear-gradient(180deg,#191919,#131313)] px-4 py-2.5 text-[13px] text-[#E7CC8B] shadow-[0_6px_18px_rgba(0,0,0,0.16)]"
+                  >
                     {cat.name}
                   </a>
                 ))}
@@ -548,8 +971,17 @@ export default function TestPage() {
               </div>
 
               <div className="px-4 pb-3">
-                <div ref={indicatorTrackRef} className="relative h-[3px] overflow-hidden rounded-full bg-white/8">
-                  <div className="absolute top-0 h-full rounded-full bg-[#D6B36A]/80 shadow-[0_0_14px_rgba(214,179,106,0.32)] transition-[left,width] duration-150" style={{ width: `${indicatorWidth}px`, left: `${indicatorLeft}px` }} />
+                <div
+                  ref={indicatorTrackRef}
+                  className="relative h-[3px] overflow-hidden rounded-full bg-white/8"
+                >
+                  <div
+                    className="absolute top-0 h-full rounded-full bg-[#D6B36A]/80 shadow-[0_0_14px_rgba(214,179,106,0.32)] transition-[left,width] duration-150"
+                    style={{
+                      width: `${indicatorWidth}px`,
+                      left: `${indicatorLeft}px`,
+                    }}
+                  />
                 </div>
               </div>
             </div>
@@ -558,34 +990,60 @@ export default function TestPage() {
           <main className="space-y-8 px-4 py-5">
             {sectionLinks.map((cat, idx) => (
               <div key={cat.id} className="space-y-4">
-                <section id={cat.id} className="rounded-[30px] border border-white/[0.045] bg-[linear-gradient(180deg,rgba(255,255,255,0.018),rgba(255,255,255,0.006))] px-4 py-5 shadow-[0_10px_30px_rgba(0,0,0,0.14)]">
+                <section
+                  id={cat.id}
+                  className="rounded-[30px] border border-white/4.5 bg-[linear-gradient(180deg,rgba(255,255,255,0.018),rgba(255,255,255,0.006))] px-4 py-5 shadow-[0_10px_30px_rgba(0,0,0,0.14)]"
+                >
                   <div className="mb-6 flex items-end justify-between">
                     <div>
-                      <p className="text-[10px] uppercase tracking-[0.30em] text-[#CFAF6D]">{idx === 0 ? "Main Category" : "Selection"}</p>
-                      <h2 className="mt-1 text-[27px] font-semibold tracking-[-0.03em] text-[#F7F3EB]">{cat.name}</h2>
+                      <p className="text-[10px] uppercase tracking-[0.30em] text-[#CFAF6D]">
+                        {idx === 0 ? "Main Category" : "Selection"}
+                      </p>
+                      <h2 className="mt-1 text-[27px] font-semibold tracking-[-0.03em] text-[#F7F3EB]">
+                        {cat.name}
+                      </h2>
                     </div>
-                    <span className="text-[11px] tracking-[0.08em] text-[#8F8F8F]">{cat.items.length} items</span>
+                    <span className="text-[11px] tracking-[0.08em] text-[#8F8F8F]">
+                      {cat.items.length} items
+                    </span>
                   </div>
 
                   <div className="space-y-4">
                     {cat.items.map((item, i) => (
-                      <div key={`${cat.id}-${i}`} className="rounded-[24px] border border-white/[0.05] bg-[linear-gradient(180deg,rgba(28,28,28,0.96),rgba(18,18,18,0.96))] px-3.5 py-3.5 shadow-[0_10px_26px_rgba(0,0,0,0.16)]">
+                      <div
+                        key={`${cat.id}-${i}`}
+                        className="rounded-[24px] border border-white/5 bg-[linear-gradient(180deg,rgba(28,28,28,0.96),rgba(18,18,18,0.96))] px-3.5 py-3.5 shadow-[0_10px_26px_rgba(0,0,0,0.16)]"
+                      >
                         <div className="flex items-center gap-3">
                           <div className="h-[72px] w-[72px] shrink-0 overflow-hidden rounded-[16px] border border-white/6 bg-[#111111] shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
-                            <img src={item.image || fallbackImage(i + idx * 3)} alt={item.name} className="h-full w-full object-cover" />
+                            <img
+                              src={item.image || fallbackImage(i + idx * 3)}
+                              alt={item.name}
+                              className="h-full w-full object-cover"
+                            />
                           </div>
 
                           <div className="min-w-0 flex-1">
                             <div className="flex items-start justify-between gap-3">
                               <div className="min-w-0">
                                 <div className="flex flex-wrap items-center gap-2">
-                                  <h3 className="truncate text-[16px] font-medium tracking-[-0.01em] text-[#F7F3EB]">{item.name}</h3>
-                                  {item.tag ? <span className="rounded-full border border-[#D6B36A]/12 bg-[#D6B36A]/8 px-2 py-1 text-[9px] uppercase tracking-[0.18em] text-[#D6B36A]">{item.tag}</span> : null}
+                                  <h3 className="truncate text-[16px] font-medium tracking-[-0.01em] text-[#F7F3EB]">
+                                    {item.name}
+                                  </h3>
+                                  {item.tag ? (
+                                    <span className="rounded-full border border-[#D6B36A]/12 bg-[#D6B36A]/8 px-2 py-1 text-[9px] uppercase tracking-[0.18em] text-[#D6B36A]">
+                                      {item.tag}
+                                    </span>
+                                  ) : null}
                                 </div>
-                                <p className="mt-1 line-clamp-2 text-[13px] leading-[1.65] text-[#A8A29A]">{item.desc}</p>
+                                <p className="mt-1 line-clamp-2 text-[13px] leading-[1.65] text-[#A8A29A]">
+                                  {item.desc}
+                                </p>
                               </div>
 
-                              <div className="whitespace-nowrap rounded-full border border-[#D6B36A]/12 bg-[linear-gradient(180deg,#141414,#101010)] px-3 py-1.5 text-[12px] font-semibold text-[#E7CC8B] shadow-[inset_0_1px_0_rgba(255,255,255,0.02)]">{item.price}</div>
+                              <div className="whitespace-nowrap rounded-full border border-[#D6B36A]/12 bg-[linear-gradient(180deg,#141414,#101010)] px-3 py-1.5 text-[12px] font-semibold text-[#E7CC8B] shadow-[inset_0_1px_0_rgba(255,255,255,0.02)]">
+                                {item.price}
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -595,7 +1053,10 @@ export default function TestPage() {
                 </section>
 
                 <div className="flex justify-center pt-1">
-                  <a href="#top" className="inline-flex items-center justify-center gap-2 rounded-full border border-[#D6B36A]/14 bg-[linear-gradient(180deg,#181818,#111111)] px-3.5 py-2 text-[10px] uppercase tracking-[0.18em] text-[#CFAF6D] shadow-[0_6px_18px_rgba(0,0,0,0.14)]">
+                  <a
+                    href="#top"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-[#D6B36A]/14 bg-[linear-gradient(180deg,#181818,#111111)] px-3.5 py-2 text-[10px] uppercase tracking-[0.18em] text-[#CFAF6D] shadow-[0_6px_18px_rgba(0,0,0,0.14)]"
+                  >
                     <span>Main Menu</span>
                     <span className="text-[10px] text-[#8B836F]">↑</span>
                   </a>
@@ -604,7 +1065,10 @@ export default function TestPage() {
             ))}
           </main>
 
-          <a href="#top" className="fixed bottom-5 right-5 z-30 inline-flex items-center gap-2 rounded-full border border-[#D6B36A]/16 bg-[linear-gradient(180deg,rgba(24,24,24,0.96),rgba(14,14,14,0.96))] px-4 py-3 text-[13px] text-[#E7CC8B] shadow-[0_12px_28px_rgba(0,0,0,0.24)] backdrop-blur-xl">
+          <a
+            href="#top"
+            className="fixed bottom-5 right-5 z-30 inline-flex items-center gap-2 rounded-full border border-[#D6B36A]/16 bg-[linear-gradient(180deg,rgba(24,24,24,0.96),rgba(14,14,14,0.96))] px-4 py-3 text-[13px] text-[#E7CC8B] shadow-[0_12px_28px_rgba(0,0,0,0.24)] backdrop-blur-xl"
+          >
             <span>Menu</span>
             <span className="text-xs text-[#B3B3B3]">↑</span>
           </a>

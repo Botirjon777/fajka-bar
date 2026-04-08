@@ -7,13 +7,13 @@ export default function Hero() {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0 scale-105">
         <img
-          src="/images/hero.png"
+          src="/images/hero.webp"
           alt="Lounge Atmosphere"
           className="w-full h-full object-cover grayscale opacity-60"
           loading="eager"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-bg-dark" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_#0a0a0a_100%)] opacity-80" />
+        <div className="absolute inset-0 bg-linear-to-b from-black/80 via-black/40 to-bg-dark" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0a0a0a_100%)] opacity-80" />
       </div>
 
       <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
@@ -23,16 +23,17 @@ export default function Hero() {
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="flex items-center justify-center gap-3 mb-8">
-            <div className="h-[1px] w-8 bg-primary/40" />
+            <div className="h-px w-8 bg-primary/40" />
             <Sparkles size={16} className="text-primary animate-pulse" />
             <span className="text-primary uppercase tracking-[0.8em] text-[10px] font-black">
               WARSZAWA · ŻURAWIA 22
             </span>
-            <div className="h-[1px] w-8 bg-primary/40" />
+            <div className="h-px w-8 bg-primary/40" />
           </div>
 
           <h1 className="text-7xl md:text-[140px] font-serif font-black text-white mb-8 leading-[0.85] tracking-tighter italic">
-            Fajka<br />
+            Fajka
+            <br />
             <span className="gold-gradient">Bar.</span>
           </h1>
 
