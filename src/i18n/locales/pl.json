@@ -2,7 +2,7 @@
   "common": {
     "brand": "FAJKA BAR",
     "city": "WARSZAWA",
-    "address": "ŻURAWIA 22, WARSZAWA",
+    "address": "ŚWIĘTOKRZYSKA 14, 00-050 WARSZAWA",
     "phone": "+48 123 456 789",
     "bookTable": "ZAREZERWUJ STOLIK",
     "exploreMenu": "SPRAWDŹ MENU",
@@ -20,14 +20,16 @@
     "choosePoison": "Wybierz swoją truciznę",
     "categories": {
       "shisha": "SHISHA",
-      "shots": "SHOTS",
-      "fireShots": "FIRE SHOTS",
-      "cocktails": "DRINKI",
-      "whiskey": "WHISKEY",
       "beer": "PIWO",
-      "bottles": "BUTELKI",
-      "beverages": "NAPOJE",
-      "snacks": "PRZEKĄSKI"
+      "whiskey": "WHISKY",
+      "shots": "SHOTY",
+      "cocktails": "KOKTAJLE",
+      "alcohol": "ALKOHOL",
+      "mocktails": "MOBTEL",
+      "coldDrinks": "ZIMNE NAPOJE",
+      "hotDrinks": "GORĄCE NAPOJE",
+      "food": "JEDZENIE",
+      "desserts": "DESERY"
     },
     "shisha": {
       "withAlcohol": "SZISZA Z ALKOHOLEM",

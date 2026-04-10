@@ -2,7 +2,7 @@
   "common": {
     "brand": "FAJKA BAR",
     "city": "WARSAW",
-    "address": "ŻURAWIA 22, WARSAW",
+    "address": "ŚWIĘTOKRZYSKA 14, 00-050 WARSAW",
     "phone": "+48 123 456 789",
     "bookTable": "BOOK A TABLE",
     "exploreMenu": "EXPLORE MENU",
@@ -20,14 +20,16 @@
     "choosePoison": "Choose your poison",
     "categories": {
       "shisha": "SHISHA",
-      "shots": "SHOTS",
-      "fireShots": "FIRE SHOTS",
-      "cocktails": "COCKTAILS",
-      "whiskey": "WHISKEY",
       "beer": "BEER",
-      "bottles": "BOTTLES",
-      "beverages": "BEVERAGES",
-      "snacks": "SNACKS"
+      "whiskey": "WHISKY",
+      "shots": "SHOTS",
+      "cocktails": "COCKTAILS",
+      "alcohol": "ALCOHOL",
+      "mocktails": "MOCKTAILS",
+      "coldDrinks": "COLD DRINKS",
+      "hotDrinks": "HOT DRINKS",
+      "food": "FOOD",
+      "desserts": "DESSERTS"
     },
     "shisha": {
       "withAlcohol": "SHISHA WITH ALCOHOL",

@@ -12,14 +12,16 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
   const navLinks = [
     { name: t("menu.categories.shisha"), href: "#section-shisha" },
-    { name: t("menu.categories.shots"), href: "#section-shots" },
-    { name: t("menu.categories.fireShots"), href: "#section-fire-shots" },
-    { name: t("menu.categories.cocktails"), href: "#section-cocktails" },
-    { name: t("menu.categories.whiskey"), href: "#section-whiskey" },
     { name: t("menu.categories.beer"), href: "#section-beer" },
-    { name: t("menu.categories.bottles"), href: "#section-bottles" },
-    { name: t("menu.categories.beverages"), href: "#section-beverages" },
-    { name: t("common.location"), href: "#location" },
+    { name: t("menu.categories.whiskey"), href: "#section-whiskey" },
+    { name: t("menu.categories.shots"), href: "#section-shots" },
+    { name: t("menu.categories.cocktails"), href: "#section-cocktails" },
+    { name: t("menu.categories.alcohol"), href: "#section-alcohol" },
+    { name: t("menu.categories.mocktails"), href: "#section-mocktails" },
+    { name: t("menu.categories.coldDrinks"), href: "#section-cold-drinks" },
+    { name: t("menu.categories.hotDrinks"), href: "#section-hot-drinks" },
+    { name: t("menu.categories.food"), href: "#section-food" },
+    { name: t("menu.categories.desserts"), href: "#section-desserts" },
   ];
 
   return (
