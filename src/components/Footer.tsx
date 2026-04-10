@@ -52,8 +52,8 @@ export default function Footer() {
               <li className="flex items-start gap-4 text-white/60 group cursor-pointer hover:text-white transition-colors">
                 <MapPin size={24} className="text-primary mt-1 shrink-0" />
                 <div className="text-xl font-serif leading-tight">
-                  Żurawia 22, <br />
-                  00-515 Warszawa <br />
+                  Świętokrzyska 14, <br />
+                  00-050 Warszawa <br />
                   <span className="text-[10px] text-primary/40 uppercase tracking-widest font-black mt-2 inline-block italic">
                     {t('footer.warsawCenter')}
                   </span>
@@ -91,7 +91,7 @@ export default function Footer() {
 
         <div className="flex flex-col justify-end">
           <a
-            href="https://www.google.com/maps/search/?api=1&query=Żurawia+22+00-515+Warszawa"
+            href="https://www.google.com/maps/search/?api=1&query=Świętokrzyska+14+00-050+Warszawa"
             target="_blank"
             rel="noreferrer"
             className="group relative h-[300px] w-full rounded-[2.5rem] overflow-hidden border border-white/10 glass hover:border-primary/50 transition-all duration-500"

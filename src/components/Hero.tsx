@@ -6,18 +6,8 @@ export default function Hero() {
   const { t } = useTranslation();
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0 scale-105">
-        <img
-          src="/images/hero.webp"
-          alt="Lounge Atmosphere"
-          className="w-full h-full object-cover grayscale opacity-60"
-          loading="eager"
-        />
-        <div className="absolute inset-0 bg-linear-to-b from-black/80 via-black/40 to-bg-dark" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0a0a0a_100%)] opacity-80" />
-      </div>
+    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-black">
+
 
       <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
         <motion.div
@@ -34,30 +24,17 @@ export default function Hero() {
             <div className="h-px w-8 bg-primary/40" />
           </div>
 
-          <h1 className="text-7xl md:text-[140px] font-serif font-black text-white mb-8 leading-[0.85] tracking-tighter italic">
-            Fajka
-            <br />
-            <span className="gold-gradient">Bar.</span>
-          </h1>
+          <img 
+            src="/images/logo.webp" 
+            alt="Fajka Bar Logo" 
+            className="w-full max-w-[400px] md:max-w-[700px] mx-auto mb-12 opacity-90 brightness-110 drop-shadow-[0_0_30px_rgba(212,175,55,0.2)]"
+          />
 
           <p className="text-lg md:text-2xl text-white/40 mb-14 max-w-xl mx-auto font-light leading-relaxed uppercase tracking-widest px-4">
             {t('hero.subtitle')}
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
-            <a
-              href="#menu"
-              className="w-full sm:w-auto bg-primary text-black px-12 py-6 rounded-2xl font-black uppercase text-xs tracking-widest transition-all hover:scale-105 active:scale-95 shadow-[0_20px_50px_rgba(212,175,55,0.3)]"
-            >
-              {t('common.exploreMenu')}
-            </a>
-            <a
-              href="#location"
-              className="text-white/40 hover:text-primary transition-colors font-black uppercase text-xs tracking-[0.3em] py-2 border-b-2 border-transparent hover:border-primary/30"
-            >
-              {t('common.location')}
-            </a>
-          </div>
+
         </motion.div>
       </div>
     </section>

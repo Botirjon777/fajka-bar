@@ -5,6 +5,7 @@ import Menu from "../components/Menu";
 import Footer from "../components/Footer";
 import Sidebar from "../components/Sidebar";
 import SplashScreen from "../components/SplashScreen";
+import FloatingMenuButton from "../components/FloatingMenuButton";
 import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
@@ -47,6 +48,7 @@ export default function HomePage() {
             isOpen={isSidebarOpen}
             onClose={() => setIsSidebarOpen(false)}
           />
+          <FloatingMenuButton />
 
           <main>
             <Hero />
