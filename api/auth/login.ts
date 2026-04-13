@@ -1,6 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import dbConnect from '../lib/db';
-import Admin from '../models/Admin';
+import dbConnect from '../lib/db.js';
+import Admin from '../models/Admin.js';
+
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 

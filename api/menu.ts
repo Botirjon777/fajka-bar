@@ -1,8 +1,9 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import dbConnect from './lib/db';
-import Category from './models/Category';
-import Subcategory from './models/Subcategory';
-import Product from './models/Product';
+import dbConnect from './lib/db.js';
+import Category from './models/Category.js';
+import Subcategory from './models/Subcategory.js';
+import Product from './models/Product.js';
+
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'GET') {

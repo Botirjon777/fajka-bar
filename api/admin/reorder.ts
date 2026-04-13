@@ -1,9 +1,10 @@
 import type { VercelResponse } from '@vercel/node';
-import dbConnect from '../lib/db';
-import Category from '../models/Category';
-import Subcategory from '../models/Subcategory';
-import Product from '../models/Product';
-import { withAuth, AuthenticatedRequest } from '../lib/authMiddleware';
+import dbConnect from '../lib/db.js';
+import Category from '../models/Category.js';
+import Subcategory from '../models/Subcategory.js';
+import Product from '../models/Product.js';
+import { withAuth, AuthenticatedRequest } from '../lib/authMiddleware.js';
+
 
 async function handler(req: AuthenticatedRequest, res: VercelResponse) {
   await dbConnect();
