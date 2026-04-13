@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   Flame,
@@ -11,9 +12,11 @@ import {
   Coffee,
   Utensils,
   Cookie,
+  Loader2,
 } from "lucide-react";
 import { cn } from "../lib/utils";
 import { useTranslation } from "react-i18next";
+import { useMenuStore } from "../store/menuStore";
 
 interface PriceOption {
   label: string;
@@ -123,8 +126,6 @@ const SubCategoryTitle = ({
   </div>
 );
 
-
-
 const CategoryCard = ({
   title,
   image,
@@ -160,362 +161,37 @@ const CategoryCard = ({
   </motion.a>
 );
 
+const iconMap: Record<string, React.ReactNode> = {
+  "section-shisha": <Flame size={20} />,
+  "section-beer": <Beer size={20} />,
+  "section-whiskey": <GlassWater size={20} />,
+  "section-shots": <Zap size={20} />,
+  "section-cocktails": <Martini size={20} />,
+  "section-alcohol": <Wine size={20} />,
+  "section-mocktails": <Droplets size={20} />,
+  "section-cold-drinks": <Droplets size={20} />,
+  "section-hot-drinks": <Coffee size={20} />,
+  "section-food": <Utensils size={20} />,
+  "section-desserts": <Cookie size={20} />,
+};
+
 export default function Menu() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { menu, fetchMenu, loading, error } = useMenuStore();
+  const lang = (i18n.language === "pl" ? "pl" : "en") as "pl" | "en";
 
-  const shishaBrands = [
-    {
-      title: "ADALYA",
-      items: [
-        { name: "Love 66", price: "100zł" },
-        { name: "Lady Killer", price: "100zł" },
-        { name: "Mango Tango", price: "100zł" },
-        { name: "Hawaii", price: "100zł" },
-        { name: "Berlin Nights", price: "100zł" },
-      ],
-    },
-    {
-      title: "DARK SIDE",
-      items: [
-        { name: "Supernova", price: "120zł" },
-        { name: "Bananapapa", price: "120zł" },
-        { name: "Wildberry", price: "120zł" },
-        { name: "Falling Star", price: "120zł" },
-        { name: "Bounty Hunter", price: "120zł" },
-      ],
-    },
-    {
-      title: "MUST HAVE",
-      items: [
-        { name: "Pinkman", price: "120zł" },
-        { name: "Unicorn Treats", price: "120zł" },
-        { name: "Milky Rice", price: "120zł" },
-        { name: "Space Flavour", price: "120zł" },
-        { name: "Kiwi Smoothie", price: "120zł" },
-      ],
-    },
-    {
-      title: "ELEMENT",
-      items: [
-        { name: "Watermelon", price: "110zł" },
-        { name: "Grapefruit", price: "110zł" },
-        { name: "Thyme", price: "110zł" },
-        { name: "Pear", price: "110zł" },
-        { name: "Belgium Waffle", price: "110zł" },
-      ],
-    },
-    {
-      title: "BLACK BURN",
-      items: [
-        { name: "Shock Iced Blueberry", price: "120zł" },
-        { name: "Haribon", price: "120zł" },
-        { name: "Papaya", price: "120zł" },
-        { name: "Something Sweet", price: "120zł" },
-        { name: "Famous Apple", price: "120zł" },
-      ],
-    },
-    {
-      title: t("menu.shisha.withAlcohol"),
-      items: [
-        { name: t("menu.shisha.withMilk"), price: "+15zł" },
-        { name: t("menu.shisha.withWine"), price: "+20zł" },
-        { name: t("menu.shisha.withVodka"), price: "+15zł" },
-        { name: t("menu.shisha.withWhisky"), price: "+25zł" },
-      ],
-    },
-  ];
+  useEffect(() => {
+    fetchMenu();
+  }, [fetchMenu]);
 
-  const classicCocktails = [
-    {
-      name: "Sex on the Beach",
-      price: "30zł",
-      desc: "30ml wódka, 20ml likier brzoskwiniowy, sok pomarańczowy, grenadyna",
-    },
-    {
-      name: "Sex on the Bar",
-      price: "30zł",
-      desc: "30ml Malibu, 30ml wódka, sok pomarańczowy, sok ananasowy, grenadyna",
-    },
-    {
-      name: "Pornstar Martini",
-      price: "35zł",
-      desc: "45ml wódki waniliowej, 15ml likieru Passoa, syrop waniliowy, limonka",
-    },
-    {
-      name: "Cosmopolitan",
-      price: "30zł",
-      desc: "40ml wódka, 15ml triple sec, 15ml sok z limonki, 30ml sok żurawinowy",
-    },
-    {
-      name: "Blue Lagoon",
-      price: "30zł",
-      desc: "20ml wódka, 20ml tequila, 7 UP, blue curacao",
-    },
-    {
-      name: "Mojito",
-      price: "35zł",
-      desc: "40ml białego rumu, cukier, limonka, mieta, woda gazowana",
-    },
-    {
-      name: "Aperol",
-      price: "30zł",
-      desc: "Aperol spritz, Prosecco, Woda gazowana",
-    },
-    {
-      name: "Jägerbomb",
-      price: "30zł",
-      desc: "50ml Jägermeister, black Energy",
-    },
-    {
-      name: "Jäger Lagoon",
-      price: "30zł",
-      desc: "40ml Jäger, 7up, blue curacao",
-    },
-    {
-      name: "Pina Colada",
-      price: "30zł",
-      desc: "30ml malibu, 20ml rum, sok ananasowy, mleko",
-    },
-    {
-      name: "Orgasm",
-      price: "30zł",
-      desc: "20ml wódka, 20ml baileys, 15ml kahlua, mleko",
-    },
-    {
-      name: "Blue Hawai",
-      price: "30zł",
-      desc: "30ml blue curacao, 40ml wódka, 60ml sok ananasowy",
-    },
-    {
-      name: "After Sex",
-      price: "30zł",
-      desc: "30ml wódka, 20ml triple sec, 10ml syrop bananowy",
-    },
-    { name: "French Kiss", price: "30zł", desc: "Bartender's Special" },
-    { name: "Long Island Ice Tea", price: "35zł" },
-    {
-      name: "Bombai",
-      price: "35zł",
-      desc: "Tequila, gin, rum, cytryna, tonic, grenadyna",
-    },
-    { name: "Black Russian", price: "25zł", desc: "40ml wódka, 20ml kahlua" },
-    {
-      name: "White Russian",
-      price: "30zł",
-      desc: "40ml wódka, 20ml kahlua, mleko",
-    },
-    {
-      name: "Blue Mother Fucker",
-      price: "35zł",
-      desc: "Wódka, rum, gin, tequila, blue curacao",
-    },
-    {
-      name: "Tequila Sunrise",
-      price: "25zł",
-      desc: "40ml tequila, sok pomarańczowy, grenadyna",
-    },
-    { name: "Gin & Tonic", price: "25zł", desc: "40ml Gin, Schweppes Tonic" },
-    { name: "Cuba Libre", price: "25zł", desc: "50ml Rum, Limonka, Pepsi" },
-  ];
-
-  const shots = [
-    { name: "Jäger 40ml", price: "15zł" },
-    { name: "Tequila 40ml", price: "15zł" },
-    { name: "Finlandia 40ml", price: "15zł" },
-    {
-      name: "Kamikaze",
-      prices: [
-        { label: "1 shot", value: "7zł" },
-        { label: "10 shot", value: "50zł" },
-      ],
-    },
-    { name: "Soplica 40ml", price: "10zł" },
-    { name: "Frankenstein 40ml", price: "15zł" },
-    {
-      name: "Sex on the beach Shot",
-      prices: [{ label: "10 shot", value: "50zł" }],
-    },
-    {
-      name: "Mad Dog",
-      prices: [
-        { label: "1 shot", value: "15zł" },
-        { label: "4 shot", value: "52zł" },
-      ],
-    },
-  ];
-
-  const fireShots = [
-    { name: "Sambuka 40ml", price: "20zł" },
-    {
-      name: "B-52 40ml",
-      price: "20zł",
-      desc: "Irish Cream, Kahlua, Triple Sec",
-    },
-    { name: "B-53 40ml", price: "20zł", desc: "Irish Cream, Kahlua, Absinthe" },
-    { name: "Absinthe 40ml", price: "20zł" },
-    { name: "Hiroshima 40ml", price: "20zł" },
-  ];
-
-  const whiskey = [
-    { name: "Jack Daniels 40ml", price: "30zł" },
-    { name: "Chivas Regal 40ml", price: "30zł" },
-    { name: "Jack Apple 40ml", price: "30zł" },
-    { name: "Jack Fire 40ml", price: "30zł" },
-    { name: "Jack Honey 40ml", price: "30zł" },
-    { name: "Jameson 40ml", price: "30zł" },
-    { name: "Red Label 40ml", price: "25zł" },
-    { name: "Jim Beam 40ml", price: "25zł" },
-    { name: "Ballantines 40ml", price: "25zł" },
-  ];
-
-  const beer = [
-    { name: "Kasztelan Beczka 500ml", price: "15zł" },
-    { name: "Brooklyn Beczka 500ml", price: "17zł" },
-    { name: "Blanch 500ml", price: "22zł" },
-    { name: "Bosman 500ml", price: "18zł" },
-    { name: "Somersby", price: "18zł", desc: "Jabłko, Jeżyna, Mango, Arbuz" },
-    { name: "Carlsberg 500ml", price: "18zł" },
-    { name: "Blanch 330ml", price: "18zł" },
-    { name: "Žatecký 500ml", price: "18zł" },
-  ];
-
-  const bottles = [
-    { name: "Jack Daniels 700ml", price: "350zł", desc: "Apple, Honey, Fire" },
-    { name: "Grants 700ml", price: "300zł" },
-    { name: "Chivas 12y 700ml", price: "400zł" },
-    { name: "Finlandia 500ml", price: "200zł" },
-    { name: "Jäger 1L", price: "350zł" },
-    { name: "Soplica 500ml", price: "140zł" },
-    { name: "Wino 0.7L", price: "140zł", desc: "White and Red" },
-  ];
-
-  const beverages = [
-    { name: "Pepsi, Pepsi Max 200ml", price: "13zł" },
-    { name: "Mirinda, 7 UP 200ml", price: "13zł" },
-    { name: "Woda gaz./niegaz 300ml", price: "10zł" },
-    { name: "Black Energy", price: "10zł" },
-    { name: "Redbull", price: "15zł" },
-  ];
-
-  const mocktails = [
-    {
-      name: "Virgin Mojito",
-      price: "25zł",
-      desc: "Limonka, mieta, cukier trzcinowy, woda gazowana",
-    },
-    {
-      name: "Shirley Temple",
-      price: "20zł",
-      desc: "Ginger ale, grenadyna, wisienka maraschino",
-    },
-    {
-      name: "Fruit Punch",
-      price: "22zł",
-      desc: "Sok pomarańczowy, ananasowy, żurawinowy, soda",
-    },
-  ];
-
-  const hotDrinks = [
-    { name: "Espresso", price: "10zł", desc: "Klasyczna intensywna kawa" },
-    {
-      name: "Cappuccino",
-      price: "14zł",
-      desc: "Podwójne espresso z puszystą pianką",
-    },
-    { name: "Herbata Czarna/Zielona", price: "12zł", desc: "Wybór herbat" },
-    {
-      name: "Gorąca Czekolada",
-      price: "16zł",
-      desc: "Gęsta czekolada z bitą śmietaną",
-    },
-  ];
-
-  const food = [
-    {
-      name: "Nachos Supreme",
-      price: "28zł",
-      desc: "Z serem, jalapeño i salsą",
-    },
-    { name: "Frytki", price: "15zł", desc: "Klasyczne, złociste frytki" },
-    {
-      name: "Burger Wołowy",
-      price: "35zł",
-      desc: "Cheddar, bekon, sałata, sos firmowy",
-    },
-    { name: "Skrzydełka z Kurczaka", price: "30zł", desc: "6 sztuk w sosie BBQ" },
-  ];
-
-  const desserts = [
-    {
-      name: "Chocolate Brownie",
-      price: "22zł",
-      desc: "Na ciepło z gałką lodów waniliowych",
-    },
-    {
-      name: "Sernik",
-      price: "20zł",
-      desc: "Klasyczny nowojorski z owocami",
-    },
-    { name: "Gałka Lodów", price: "8zł", desc: "Wanilia, Czekolada lub Truskawka" },
-  ];
-
-  const categories = [
-    {
-      title: t("menu.categories.shisha"),
-      id: "section-shisha",
-      image: "/images/hookah.webp",
-    },
-    {
-      title: t("menu.categories.beer"),
-      id: "section-beer",
-      image: "/images/drinks.webp",
-    },
-    {
-      title: t("menu.categories.whiskey"),
-      id: "section-whiskey",
-      image: "/images/drinks.webp",
-    },
-    {
-      title: t("menu.categories.shots"),
-      id: "section-shots",
-      image: "/images/drinks.webp",
-    },
-    {
-      title: t("menu.categories.cocktails"),
-      id: "section-cocktails",
-      image: "/images/hero.webp",
-    },
-    {
-      title: t("menu.categories.alcohol"),
-      id: "section-alcohol",
-      image: "/images/drinks.webp",
-    },
-    {
-      title: t("menu.categories.mocktails"),
-      id: "section-mocktails",
-      image: "/images/hero.webp",
-    },
-    {
-      title: t("menu.categories.coldDrinks"),
-      id: "section-cold-drinks",
-      image: "/images/drinks.webp",
-    },
-    {
-      title: t("menu.categories.hotDrinks"),
-      id: "section-hot-drinks",
-      image: "/images/drinks.webp",
-    },
-    {
-      title: t("menu.categories.food"),
-      id: "section-food",
-      image: "/images/snacks.webp",
-    },
-    {
-      title: t("menu.categories.desserts"),
-      id: "section-desserts",
-      image: "/images/snacks.webp",
-    },
-  ];
+  if (loading && menu.length === 0) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center gap-4">
+        <Loader2 className="animate-spin text-primary" size={48} />
+        <p className="text-white/20 uppercase tracking-[0.4em] font-black text-[10px]">Preparing Experience...</p>
+      </div>
+    );
+  }
 
   return (
     <section id="menu" className="py-24 px-6 max-w-4xl mx-auto">
@@ -538,6 +214,12 @@ export default function Menu() {
         </motion.h2>
       </div>
 
+      {error && (
+        <div className="text-center mb-12 p-4 bg-red-500/10 border border-red-500/20 rounded-2xl text-red-500 font-bold uppercase tracking-widest text-xs">
+          Offline Mode: Using Cache ({error})
+        </div>
+      )}
+
       {/* Category Selection Grid */}
       <div id="category-selection" className="mb-32 scroll-mt-24">
         <div className="flex items-center gap-4 mb-12">
@@ -548,258 +230,66 @@ export default function Menu() {
           <div className="h-px flex-1 bg-white/5" />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {categories.map((cat) => (
-            <CategoryCard key={cat.id} {...cat} />
+          {menu.map((cat) => (
+            <CategoryCard 
+              key={cat._id} 
+              title={cat.title[lang]} 
+              image={cat.image} 
+              id={cat.anchorId} 
+            />
           ))}
         </div>
       </div>
 
       <div className="space-y-32">
-        {/* SHISHA SECTION */}
-        <div id="section-shisha">
-          <SectionTitle
-            title={t("menu.categories.shisha")}
-            icon={<Flame size={20} />}
-            id="section-shisha"
-          />
-          <div className="space-y-4">
-            {shishaBrands.map((brand, i) => (
-              <div key={i}>
-                <SubCategoryTitle
-                  title={brand.title}
-                />
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-1">
-                  {brand.items.map((item, j) => (
+        {menu.map((category) => (
+          <div key={category._id} id={category.anchorId}>
+            <SectionTitle
+              title={category.title[lang]}
+              icon={iconMap[category.anchorId] || <Droplets size={20} />}
+              id={category.anchorId}
+            />
+            
+            <div className="space-y-12">
+              {/* Products without subcategory */}
+              {category.products.length > 0 && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2">
+                  {category.products.map((item) => (
                     <MenuItem
-                      key={j}
-                      name={item.name}
+                      key={item._id}
+                      name={item.name[lang]}
                       price={item.price}
-                      image="/images/hookah.webp"
+                      prices={item.prices}
+                      desc={item.desc?.[lang]}
+                      image={item.image}
                     />
                   ))}
                 </div>
-              </div>
-            ))}
+              )}
+
+              {/* Subcategories */}
+              {category.subcategories.map((sub) => (
+                <div key={sub._id}>
+                  <SubCategoryTitle title={sub.title[lang]} />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-1">
+                    {sub.products.map((item) => (
+                      <MenuItem
+                        key={item._id}
+                        name={item.name[lang]}
+                        price={item.price}
+                        prices={item.prices}
+                        desc={item.desc?.[lang]}
+                        image={item.image}
+                      />
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-
-        </div>
-
-        {/* BEER SECTION */}
-        <div id="section-beer">
-          <SectionTitle
-            title={t("menu.categories.beer")}
-            icon={<Beer size={20} />}
-            id="section-beer"
-          />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2">
-            {beer.map((item) => (
-              <MenuItem
-                key={item.name}
-                name={item.name}
-                price={item.price}
-                desc={item.desc}
-                image="/images/drinks.webp"
-              />
-            ))}
-          </div>
-
-        </div>
-
-        {/* WHISKEY SECTION */}
-        <div id="section-whiskey">
-          <SectionTitle
-            title={t("menu.categories.whiskey")}
-            icon={<GlassWater size={20} />}
-            id="section-whiskey"
-          />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2">
-            {whiskey.map((item) => (
-              <MenuItem
-                key={item.name}
-                name={item.name}
-                price={item.price}
-                image="/images/drinks.webp"
-              />
-            ))}
-          </div>
-
-        </div>
-
-        {/* SHOTS SECTION */}
-        <div id="section-shots">
-          <SectionTitle
-            title={t("menu.categories.shots")}
-            icon={<Zap size={20} />}
-            id="section-shots"
-          />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2">
-            {shots.map((item) => (
-              <MenuItem
-                key={item.name}
-                name={item.name}
-                price={item.price}
-                prices={item.prices}
-                image="/images/drinks.webp"
-              />
-            ))}
-          </div>
-          <SubCategoryTitle title={t("menu.categories.fireShots")} />
-          <div className="space-y-2">
-            {fireShots.map((item) => (
-              <MenuItem
-                key={item.name}
-                name={item.name}
-                price={item.price}
-                desc={item.desc}
-                image="/images/drinks.webp"
-              />
-            ))}
-          </div>
-
-        </div>
-
-        {/* COCKTAILS SECTION */}
-        <div id="section-cocktails">
-          <SectionTitle
-            title={t("menu.categories.cocktails")}
-            icon={<Martini size={20} />}
-            id="section-cocktails"
-          />
-          <div className="space-y-2">
-            {classicCocktails.map((item) => (
-              <MenuItem
-                key={item.name}
-                name={item.name}
-                price={item.price}
-                desc={item.desc}
-                image="/images/drinks.webp"
-              />
-            ))}
-          </div>
-
-        </div>
-
-        {/* ALCOHOL SECTION (previously BOTTLES) */}
-        <div id="section-alcohol">
-          <SectionTitle
-            title={t("menu.categories.alcohol")}
-            icon={<Wine size={20} />}
-            id="section-alcohol"
-          />
-          <div className="space-y-2">
-            {bottles.map((item) => (
-              <MenuItem
-                key={item.name}
-                name={item.name}
-                price={item.price}
-                desc={item.desc}
-                image="/images/drinks.webp"
-              />
-            ))}
-          </div>
-
-        </div>
-
-        {/* MOCKTAILS SECTION */}
-        <div id="section-mocktails">
-          <SectionTitle
-            title={t("menu.categories.mocktails")}
-            icon={<Droplets size={20} />}
-            id="section-mocktails"
-          />
-          <div className="space-y-2">
-            {mocktails.map((item) => (
-              <MenuItem
-                key={item.name}
-                name={item.name}
-                price={item.price}
-                desc={item.desc}
-                image="/images/hero.webp"
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* COLD DRINKS SECTION (previously BEVERAGES) */}
-        <div id="section-cold-drinks">
-          <SectionTitle
-            title={t("menu.categories.coldDrinks")}
-            icon={<Droplets size={20} />}
-            id="section-cold-drinks"
-          />
-          <div className="space-y-2">
-            {beverages.map((item) => (
-              <MenuItem
-                key={item.name}
-                name={item.name}
-                price={item.price}
-                image="/images/drinks.webp"
-              />
-            ))}
-          </div>
-
-        </div>
-
-        {/* HOT DRINKS SECTION */}
-        <div id="section-hot-drinks">
-          <SectionTitle
-            title={t("menu.categories.hotDrinks")}
-            icon={<Coffee size={20} />}
-            id="section-hot-drinks"
-          />
-          <div className="space-y-2">
-            {hotDrinks.map((item) => (
-              <MenuItem
-                key={item.name}
-                name={item.name}
-                price={item.price}
-                desc={item.desc}
-                image="/images/drinks.webp"
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* FOOD SECTION */}
-        <div id="section-food">
-          <SectionTitle
-            title={t("menu.categories.food")}
-            icon={<Utensils size={20} />}
-            id="section-food"
-          />
-          <div className="space-y-2">
-            {food.map((item) => (
-              <MenuItem
-                key={item.name}
-                name={item.name}
-                price={item.price}
-                desc={item.desc}
-                image="/images/snacks.webp"
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* DESSERTS SECTION */}
-        <div id="section-desserts">
-          <SectionTitle
-            title={t("menu.categories.desserts")}
-            icon={<Cookie size={20} />}
-            id="section-desserts"
-          />
-          <div className="space-y-2">
-            {desserts.map((item) => (
-              <MenuItem
-                key={item.name}
-                name={item.name}
-                price={item.price}
-                desc={item.desc}
-                image="/images/snacks.webp"
-              />
-            ))}
-          </div>
-        </div>
+        ))}
       </div>
     </section>
   );
 }
+
